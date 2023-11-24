@@ -1,0 +1,18 @@
+NO ./srcs/sprites/test/purplestone.xpm
+SO ./srcs/sprites/test/redbrick.xpm
+WE ./srcs/sprites/test/mossy.xpm
+EA ./srcs/sprites/test/bluestone.xpm
+
+F 220,100,0
+C 225,30,15
+
+1111111111
+100G000001
+100F000Z01
+100C000B01
+100G00Z001
+100C0F0B01
+100F0FZF01
+100C000B01
+10000N0001
+1111111111
