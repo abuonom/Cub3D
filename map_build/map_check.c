@@ -6,26 +6,24 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/24 19:32:55 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:44:59 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void stampaMatriceChar(char **matrice)
+void	stampaMatriceChar(char **matrice)
 {
 	for (int i = 0; matrice[i]; i++)
-	{
 		printf("%s\n", matrice[i]);
-	}
 }
 
-char *pick_map(char *path)
+char	*pick_map(char *path)
 {
-	int fd;
-	char *tmp;
-	int i;
-	char *res;
+	int		fd;
+	char	*tmp;
+	int		i;
+	char	*res;
 
 	res = ft_strdup("");
 	i = 6;
@@ -36,7 +34,7 @@ char *pick_map(char *path)
 	{
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
-			break;
+			break ;
 		if (tmp[0] != '\n')
 			i--;
 		free(tmp);
@@ -45,7 +43,7 @@ char *pick_map(char *path)
 	{
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
-			break;
+			break ;
 		res = ft_strjoin3(res, tmp);
 		free(tmp);
 	}
@@ -53,10 +51,10 @@ char *pick_map(char *path)
 	return (res);
 }
 
-void check_first_last_row(char **map)
+void	check_first_last_row(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[0][i] != '\0')
@@ -77,9 +75,7 @@ void check_first_last_row(char **map)
 	}
 }
 
-
-
-char **copy_map(char **original_map)
+char	**copy_map(char **original_map)
 {
     int		row;
 	int		i;
@@ -100,37 +96,38 @@ char **copy_map(char **original_map)
 			while (i-- > 0)
 				free(copied_map[i]);
 			free(copied_map);
-		return NULL;
+		return (NULL);
 		}
 		ft_strcpy(copied_map[i], original_map[i]);
 	}
 	copied_map[row] = NULL;
-	return copied_map;
+	return (copied_map);
 }
 
 
 int	flood_fill(char **map,int x, int y)
 {
-	int res;
+	int	res;
+
 	return (res);
 }
 
-int player_p(char flag, char **map)
+int	player_p(char flag, char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while(map[i] != NULL)
+	while (map[i] != NULL)
 	{
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
 			j = 0;
-			if(ft_strrchr("NSEW",map[i][j]))
+			if (ft_strrchr("NSEW",map[i][j]))
 			{
-				if(flag == 'x')
-					return j;
-				return i;
+				if (flag == 'x')
+					return (j);
+				return (i);
 			}
 			j++;
 		}
@@ -141,41 +138,41 @@ int player_p(char flag, char **map)
 
 void	check_duplicate(char **map)
 {
-	int flag;
-	int i;
-	int j;
+	int	flag;
+	int	i;
+	int	j;
 
 	i = 0;
 	flag = 0;
 
-	while(map[i] != NULL)
+	while (map[i] != NULL)
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
-			if(ft_strrchr("NSEW",map[i][j]))
+			if (ft_strrchr("NSEW",map[i][j]))
 				flag++;
 			j++;
 		}
 		i++;
 	}
-	if(flag != 1)
+	if (flag != 1)
 		ft_exit("Player error");
 }
 
 void	check_trash(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 
-	while(map[i] != NULL)
+	while (map[i] != NULL)
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
-			if(!ft_strrchr("NSEW 10",map[i][j]))
+			if (!ft_strrchr("NSEW 10",map[i][j]))
 				ft_exit("Not valid character in map");
 			j++;
 		}
@@ -183,7 +180,7 @@ void	check_trash(char **map)
 	}
 }
 
-void tab_with_spaces(char** map)
+void	tab_with_spaces(char** map)
 {
 	int		row;
 	size_t	lenght;
@@ -192,28 +189,28 @@ void tab_with_spaces(char** map)
 	row = 0;
 	while (map[row] != NULL)
 	{
-	col = 0;
-	lenght = ft_strlen(map[row]);
-	while (col < lenght)
-	{
-		if (map[row][col] == '\t')
+		col = 0;
+		lenght = ft_strlen(map[row]);
+		while (col < lenght)
 		{
-			ft_memmove(&map[row][col + 4], &map[row][col + 1], lenght - col);
-			map[row][col] = ' ';
-			map[row][col + 1] = ' ';
-			map[row][col + 2] = ' ';
-			map[row][col + 3] = ' ';
-			lenght += 3;
-			col += 4;
+			if (map[row][col] == '\t')
+			{
+				ft_memmove(&map[row][col + 4], &map[row][col + 1], lenght - col);
+				map[row][col] = ' ';
+				map[row][col + 1] = ' ';
+				map[row][col + 2] = ' ';
+				map[row][col + 3] = ' ';
+				lenght += 3;
+				col += 4;
+			}
+			else
+				col++;
 		}
-		else
-			col++;
-	}
-	row++;
+		row++;
 	}
 }
 
-void check_map(char *path, t_cub3d *cub3d)
+void	check_map(char *path, t_cub3d *cub3d)
 {
 	cub3d->map = ft_split(pick_map(path), '\n');
 
