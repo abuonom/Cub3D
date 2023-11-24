@@ -58,8 +58,8 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	float	ascisse_x;
-	float	ordinate_y;
+	float	x;
+	float	y;
 	float	pov;
 }	t_player;
 
@@ -98,7 +98,7 @@ typedef struct s_cub3d
 	void		*mlx;
 	void		*win;
 	t_img		texture[4];
-
+	
 }	t_cub3d;
 
 void	ft_rad(t_cub3d *cub3d);
