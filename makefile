@@ -14,6 +14,7 @@ NAME = cub3D
 
 SRC = $(wildcard *.c) \
 		$(wildcard map_build/*.c) \
+		$(wildcard exit/*.c) \
 		#$(wildcard raycast/*.c) \
 
 OBJS = $(SRC:.c=.o)
