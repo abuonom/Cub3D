@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/29 18:11:56 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:58:50 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,16 +120,22 @@ int	player_p(char flag, char **map)
 
 void	check_and_init_map(char *path, t_cub3d *cub3d)
 {
-	cub3d->map = ft_split(pick_map(path, cub3d), '\n');
+	char *str_map;
+	char **copy;
+
+	str_map = pick_map(path, cub3d);
+	cub3d->map = ft_split(str_map, '\n');
+	free(str_map);
 	if (cub3d->map == NULL)
 		ft_exit("Error\nMap not found", cub3d);
 	tab_with_spaces(cub3d->map);
 	check_first_last_row(cub3d->map, cub3d);
 	check_trash(cub3d->map, cub3d);
 	check_duplicate(cub3d->map, cub3d);
-	if (flood_fill(copy_map(cub3d->map), player_p('x', cub3d->map)
-			, player_p('y', cub3d->map)) != 0)
+	copy = copy_map(cub3d->map);
+	if (flood_fill(copy, player_p('x', cub3d->map) , player_p('y', cub3d->map)) != 0)
 		ft_exit("Mappa non valida", cub3d);
+	free_map(copy);
 	resize_map(cub3d->map);
 	spaces_with_zero(cub3d->map);
 }

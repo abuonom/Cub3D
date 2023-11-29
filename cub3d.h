@@ -129,5 +129,6 @@ void	init_rgb(t_cub3d *cub3d);
 void	check_extension(int argc, char **argv, t_cub3d *cub3d);
 void	spaces_with_zero(char **map);
 void	resize_map(char **map);
+void	free_map(char **map);
 
 #endif
