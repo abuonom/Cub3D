@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/27 17:33:22 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:05:07 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,44 +52,42 @@ int	param_full(char *tmp, t_cub3d *cub3d)
 		i++;
 	if (cub3d->ceiling != NULL)
 		i++;
+	if(i > 6)
+		ft_exit("Wrong parameter", cub3d);
 	return (i);
 }
 
+void	check_extension(int argc, char **argv, t_cub3d *cub3d)
+{
+	if (argc > 2 || argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
+		ft_exit("Wrong arguments", cub3d);
+	if (check_cub(argv[1]))
+		ft_exit("Wrong file extension", cub3d);
+}
 void	check_parameter(int argc, char **argv, t_cub3d *cub3d)
 {
-	char	*tmp;
 	int		fd;
-
-	if (argc > 2 || argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
-		ft_exit("Wrong arguments");
-	if (check_cub(argv[1]))
-		ft_exit("Wrong file extension");
+	
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		ft_exit("Error opening file");
-	while (1)
+		ft_exit("Error opening file", cub3d);
+	cub3d->temp = get_next_line(fd);
+	while (cub3d->temp != NULL)
 	{
-		tmp = get_next_line(fd);
-		if (tmp == NULL)
-			break ;
-		if (is_parameter(tmp))
+		if (is_parameter(cub3d->temp))
 		{
-			if (is_param_not_present(tmp, cub3d))
-				add_parameter(tmp, cub3d);
+			if (is_param_not_present(cub3d->temp, cub3d))
+				add_parameter(cub3d->temp, cub3d);
 			else
-				break ;
+				ft_exit("Parametro duplicato", cub3d);
 		}
-		else
-		{
-			if (tmp[0] != '\n' && param_full(tmp, cub3d) < 6)
+		else if (cub3d->temp[0] != '\n' && param_full(cub3d->temp, cub3d) < 6)
 				break ;
-		}
-		free(tmp);
+		free(cub3d->temp);
+		cub3d->temp = get_next_line(fd);
 	}
-	if (tmp != NULL)
-		free(tmp);
+	param_full(cub3d->temp, cub3d);
 	close(fd);
-	if (param_full(tmp, cub3d) < 6)
-		ft_exit("Wrong parameter");
-	init_rgb(cub3d);
+	if (cub3d->temp != NULL)
+		free(cub3d->temp);
 }

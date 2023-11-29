@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnicoter <lnicoter@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:30:26 by lnicoter          #+#    #+#             */
-/*   Updated: 2023/11/01 10:45:52 by lnicoter         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:01:00 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 void	*ft_realloc(void *p, size_t size, int dim, int new_dim)
 {
 	char		*new_p;

@@ -6,13 +6,13 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/27 17:29:03 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:11:56 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	*pick_map(char *path)
+char	*pick_map(char *path, t_cub3d *cub3d)
 {
 	int		fd;
 	char	*tmp;
@@ -23,7 +23,7 @@ char	*pick_map(char *path)
 	i = 6;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_exit("Error\nFile not found");
+		ft_exit("Error\nFile not found", cub3d);
 	while (1)
 	{
 		tmp = get_next_line(fd);
@@ -118,17 +118,18 @@ int	player_p(char flag, char **map)
 	return (-1);
 }
 
-void	check_map(char *path, t_cub3d *cub3d)
+void	check_and_init_map(char *path, t_cub3d *cub3d)
 {
-	cub3d->map = ft_split(pick_map(path), '\n');
+	cub3d->map = ft_split(pick_map(path, cub3d), '\n');
 	if (cub3d->map == NULL)
-		ft_exit("Error\nMap not found");
+		ft_exit("Error\nMap not found", cub3d);
 	tab_with_spaces(cub3d->map);
-	check_first_last_row(cub3d->map);
-	check_trash(cub3d->map);
-	check_duplicate(cub3d->map);
+	check_first_last_row(cub3d->map, cub3d);
+	check_trash(cub3d->map, cub3d);
+	check_duplicate(cub3d->map, cub3d);
 	if (flood_fill(copy_map(cub3d->map), player_p('x', cub3d->map)
 			, player_p('y', cub3d->map)) != 0)
-		ft_exit("Fallito flood");
-	stampa_matrice_char(cub3d->map);
+		ft_exit("Mappa non valida", cub3d);
+	resize_map(cub3d->map);
+	spaces_with_zero(cub3d->map);
 }

@@ -99,6 +99,7 @@ typedef struct s_cub3d
 	void		*win;
 	t_img		texture[4];
 	char		*path;
+	char		*temp;
 	int			fd;
 }	t_cub3d;
 
@@ -114,15 +115,19 @@ int		keys(int keycode, t_cub3d *cub3d);
 
 //abuonomo
 
-void	ft_exit(char *str);
+void	ft_exit(char *str, t_cub3d *cub3d);
 void	check_parameter(int argc, char **argv, t_cub3d *cub3d);
-void	check_map(char *path, t_cub3d *cub3d);
+void	check_and_init_map(char *path, t_cub3d *cub3d);
 void	stampa_matrice_char(char **matrice);
 void	tab_with_spaces(char **map);
-void	check_duplicate(char **map);
-void	check_trash(char **map);
-void	check_first_last_row(char **map);
+void	check_duplicate(char **map, t_cub3d *cub3d);
+void	check_trash(char **map, t_cub3d *cub3d);
+void	check_first_last_row(char **map, t_cub3d *cub3d);
 int		is_param_not_present(char *tmp, t_cub3d *cub3d);
 void	add_parameter(char *tmp, t_cub3d *cub3d);
 void	init_rgb(t_cub3d *cub3d);
+void	check_extension(int argc, char **argv, t_cub3d *cub3d);
+void	spaces_with_zero(char **map);
+void	resize_map(char **map);
+
 #endif

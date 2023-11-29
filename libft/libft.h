@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:18:28 by mlongo            #+#    #+#             */
-/*   Updated: 2023/11/17 15:37:01 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:17:56 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,12 @@ int		ft_strcmp_env(const char *input, const char *env);
 char	*ft_strcat(char *dest, char *src);
 int		ft_strcasecmp(const char *str1, const char *str2);
 char	*get_next_line(int fd);
-
+int		ft_fill(char **str, char **buffer, int fd);
+int		ft_check_error(int r, char *str, char *buffer);
+int		ft_buffer_al(int fd, char **buffer);
+void	ft_free_buffer(int r, int fd, char **buffer);
+char	*ft_strjoin_get(char *str, char *buffer, int step);
+void	ft_movebuffer(char *buffer, int step);
+char	*ft_realloc_get(char *str, char *buffer, int step);
+char	*get_next_line(int fd);
 #endif

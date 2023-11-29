@@ -5,76 +5,165 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/07 13:02:21 by mlongo            #+#    #+#             */
-/*   Updated: 2023/11/16 18:18:38 by abuonomo         ###   ########.fr       */
+/*   Created: 2023/11/29 15:18:03 by abuonomo          #+#    #+#             */
+/*   Updated: 2023/11/29 15:18:05 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-char	*expand_res(char *current)
+int	ft_buffer_al(int fd, char **buffer)
 {
-	char	*res;
+	int	i;
 
-	if (!current)
+	if (!buffer[fd])
 	{
-		res = (char *)ft_calloc(sizeof(char), BUFFER_SIZE + 1);
-		return (res);
+		buffer[fd] = (char *) malloc(sizeof(char) * BUFFER_SIZE);
+		if (!buffer[fd])
+			return (1);
+		i = 0;
+		while (i < BUFFER_SIZE)
+		{
+			buffer[fd][i] = 0;
+			i++;
+		}
 	}
-	res = (char *)ft_calloc(1, (ft_strlen(current) + BUFFER_SIZE) + 1);
-	ft_memcpy(res, current, ft_strlen(current));
-	free(current);
-	return (res);
+	return (0);
 }
 
-void	load_res(char *res, char *buf)
+void	ft_free_buffer(int r, int fd, char **buffer)
+{
+	if (!r)
+	{
+		free(buffer[fd]);
+		buffer[fd] = NULL;
+	}
+}
+
+int	ft_fill(char **str, char **buffer, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (!res[0] && !buf[0])
-		return ;
-	while (*res)
-		res++;
-	while (buf[i])
+	while (i < BUFFER_SIZE && buffer[fd][i] != '\n' && buffer[fd][i])
+		i++;
+	if (i)
 	{
-		res[i] = buf[i];
-		if (res[i++] == '\n')
-		{
-			ft_memcpy(buf, &buf[i], BUFFER_SIZE - i);
-			ft_bzero(buf + BUFFER_SIZE - i, i);
-			return ;
-		}
+		*str = ft_realloc_get(*str, buffer[fd], i);
+		if (!(*str))
+			return (1);
+		if (BUFFER_SIZE != 1)
+			ft_movebuffer(buffer[fd], i);
 	}
-	ft_bzero(buf, BUFFER_SIZE);
+	return (0);
+}
+
+int	ft_check_error(int r, char *str, char *buffer)
+{
+	if (r < 0)
+	{
+		if (str)
+			free(str);
+		if (buffer)
+			free(buffer);
+		return (1);
+	}
+	return (0);
+}
+
+char	*ft_strjoin_get(char *str, char *buffer, int step)
+{
+	int		len;
+	char	*new;
+
+	len = 0;
+	while (str[len])
+		len++;
+	new = (char *) malloc((len + step + 1) * sizeof(char));
+	if (!new)
+	{
+		if (str)
+			free(str);
+		return (NULL);
+	}
+	new[len + step] = 0;
+	while (--step >= 0)
+		new[len + step] = buffer[step];
+	while (--len >= 0)
+		new[len] = str[len];
+	if (str)
+		free(str);
+	return (new);
+}
+
+void	ft_movebuffer(char *buffer, int step)
+{
+	int	i;
+
+	i = 0;
+	if (!step)
+		return ;
+	while (i < BUFFER_SIZE)
+	{
+		if (!buffer[i])
+			break ;
+		if (i < BUFFER_SIZE - step)
+			buffer[i] = buffer[i + step];
+		else
+			buffer[i] = 0;
+		i++;
+	}
+}
+
+char	*ft_realloc_get(char *str, char *buffer, int step)
+{
+	char	*new;
+	int		i;
+
+	if (!step)
+		return (str);
+	if (!str)
+	{
+		new = (char *) malloc((step + 1) * sizeof(char));
+		if (!new)
+			return (NULL);
+		i = 0;
+		while (i < step)
+		{
+			new[i] = buffer[i];
+			i++;
+		}
+		new[i] = 0;
+	}
+	else
+		new = ft_strjoin_get(str, buffer, step);
+	return (new);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buf[4096][BUFFER_SIZE];
-	char		*res;
-	int			countread;
+	static char	*buffer[1024];
+	char		*str;
+	int			r;
 
-	countread = 0;
-	if (fd < 0 || fd >= 4096 || fd == 1 || fd == 2 || BUFFER_SIZE <= 0)
+	r = 1;
+	str = NULL;
+	if (ft_buffer_al(fd, buffer))
 		return (NULL);
-	res = expand_res(NULL);
-	load_res(res, buf[fd]);
-	if (!*buf[fd])
-		countread = read(fd, buf[fd], BUFFER_SIZE);
-	while (countread > 0 && res[ft_strlen(res) - 1] != '\n')
+	while (r)
 	{
-		res = expand_res(res);
-		load_res(res, buf[fd]);
-		if (res[ft_strlen(res) - 1] == '\n')
+		if (ft_fill(&str, buffer, fd))
+			return (NULL);
+		if (buffer[fd][0] == '\n')
+		{
+			str = ft_realloc_get(str, buffer[fd], 1);
+			ft_movebuffer(buffer[fd], 1);
 			break ;
-		countread = read(fd, buf[fd], BUFFER_SIZE);
+		}
+		r = read(fd, buffer[fd], BUFFER_SIZE);
+		if (ft_check_error(r, str, buffer[fd]))
+			return (NULL);
 	}
-	if (res && !*res)
-	{
-		free(res);
-		return (NULL);
-	}
-	return (res);
+	ft_free_buffer(r, fd, buffer);
+	return (str);
 }

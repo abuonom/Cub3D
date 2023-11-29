@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:15:26 by mlongo            #+#    #+#             */
-/*   Updated: 2023/04/04 19:15:29 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:28:07 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	i;
-	char	*d;
 	char	*s;
+	char	*d;
 
-	i = 0;
 	if (!dst && !src)
-		return (NULL);
-	d = (char *) dst;
-	s = (char *) src;
+		return (0);
+	s = (void *) src;
+	d = (void *) dst;
 	if (d > s)
 	{
 		while (len-- > 0)
@@ -30,6 +29,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	else
 	{
+		i = 0;
 		while (i < len)
 		{
 			d[i] = s[i];
