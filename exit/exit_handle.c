@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/29 18:37:00 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:32:09 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	if (map != NULL)
 	{
@@ -53,7 +53,7 @@ void	free_cub3d(t_cub3d *cub3d)
 	}
 }
 
-void ft_exit(char *str, t_cub3d *cub3d)
+void	ft_exit(char *str, t_cub3d *cub3d)
 {
 	free_cub3d(cub3d);
 	perror(str);

@@ -6,7 +6,7 @@
 #    By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:18:35 by mlongo            #+#    #+#              #
-#    Updated: 2023/11/16 18:27:50 by abuonomo         ###   ########.fr        #
+#    Updated: 2023/11/30 18:30:27 by abuonomo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS := ft_strlcpy.o ft_calloc.o ft_putnbr_fd.o ft_strdup.o ft_tolower.o \
 	ft_memcpy.o ft_putstr_fd.o ft_realloc.o ft_strcpy.o ft_strncpy.o ft_strcmp_env.o ft_strcat.o ft_strcasecmp.o\
 	ft_lstlast.o ft_lstiter.o ft_lstsize.o \
 	ft_lstadd_back.o ft_lstadd_front.o ft_lstclear.o ft_lstdelone.o \
-	ft_lstmap.o ft_lstnew.o get_next_line_bonus.o \
+	ft_lstmap.o ft_lstnew.o get_next_line_bonus.o get_next_line_bonus_utils.o\
 
 FLAGS := -Wall -Werror -Wextra
 

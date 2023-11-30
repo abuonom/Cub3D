@@ -6,16 +6,16 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:27:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/29 18:10:18 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:22:08 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void spaces_with_zero(char **map)
+void	spaces_with_zero(char **map)
 {
-	int row;
-	int col;
+	int	row;
+	int	col;
 
 	row = 0;
 	while (map[row] != NULL)
@@ -46,7 +46,8 @@ void	tab_with_spaces(char **map)
 		{
 			if (map[row][col] == '\t')
 			{
-				map[row] = ft_realloc(map[row], sizeof(char), ft_strlen(map[row]), ft_strlen(map[row]) + 4);
+				map[row] = ft_realloc(map[row], sizeof(char),
+						ft_strlen(map[row]), ft_strlen(map[row]) + 4);
 				memmove(&map[row][col + 4],
 					&map[row][col + 1], lenght - col);
 				map[row][col++] = ' ';

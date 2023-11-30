@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/29 15:05:07 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:18:46 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	param_full(char *tmp, t_cub3d *cub3d)
 		i++;
 	if (cub3d->ceiling != NULL)
 		i++;
-	if(i > 6)
+	if (i > 6)
 		ft_exit("Wrong parameter", cub3d);
 	return (i);
 }
@@ -64,10 +64,11 @@ void	check_extension(int argc, char **argv, t_cub3d *cub3d)
 	if (check_cub(argv[1]))
 		ft_exit("Wrong file extension", cub3d);
 }
+
 void	check_parameter(int argc, char **argv, t_cub3d *cub3d)
 {
 	int		fd;
-	
+
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_exit("Error opening file", cub3d);
@@ -82,7 +83,7 @@ void	check_parameter(int argc, char **argv, t_cub3d *cub3d)
 				ft_exit("Parametro duplicato", cub3d);
 		}
 		else if (cub3d->temp[0] != '\n' && param_full(cub3d->temp, cub3d) < 6)
-				break ;
+			break ;
 		free(cub3d->temp);
 		cub3d->temp = get_next_line(fd);
 	}

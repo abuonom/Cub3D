@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/29 18:58:50 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:19:18 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ int	player_p(char flag, char **map)
 
 void	check_and_init_map(char *path, t_cub3d *cub3d)
 {
-	char *str_map;
-	char **copy;
+	char	*str_map;
+	char	**copy;
 
 	str_map = pick_map(path, cub3d);
 	cub3d->map = ft_split(str_map, '\n');
@@ -133,7 +133,8 @@ void	check_and_init_map(char *path, t_cub3d *cub3d)
 	check_trash(cub3d->map, cub3d);
 	check_duplicate(cub3d->map, cub3d);
 	copy = copy_map(cub3d->map);
-	if (flood_fill(copy, player_p('x', cub3d->map) , player_p('y', cub3d->map)) != 0)
+	if (flood_fill(copy, player_p('x', cub3d->map),
+			player_p('y', cub3d->map)) != 0)
 		ft_exit("Mappa non valida", cub3d);
 	free_map(copy);
 	resize_map(cub3d->map);
