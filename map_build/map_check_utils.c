@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:27:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/30 18:22:08 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:44:25 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,24 @@ void	spaces_with_zero(char **map)
 void	tab_with_spaces(char **map)
 {
 	int		row;
-	size_t	lenght;
+	size_t	len;
 	int		col;
 
 	row = 0;
 	while (map[row] != NULL)
 	{
 		col = 0;
-		lenght = ft_strlen(map[row]);
-		while (col < lenght)
+		len = ft_strlen(map[row]);
+		while (col < len)
 		{
 			if (map[row][col] == '\t')
 			{
 				map[row] = ft_realloc(map[row], sizeof(char),
 						ft_strlen(map[row]), ft_strlen(map[row]) + 4);
-				memmove(&map[row][col + 4],
-					&map[row][col + 1], lenght - col);
-				map[row][col++] = ' ';
-				map[row][col++] = ' ';
-				map[row][col++] = ' ';
-				map[row][col++] = ' ';
-				lenght += 3;
+				ft_memmove(&map[row][col + 4], &map[row][col + 1], len - col);
+				ft_memset(&map[row][col], ' ', 4);
+				col += 4;
+				len += 3;
 			}
 			else
 				col++;
