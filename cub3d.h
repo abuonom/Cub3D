@@ -51,8 +51,8 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bits;   //bits x pixel
+	int		line; //line lenght
 	int		endian;
 	int		height;
 	int		width;
@@ -81,8 +81,6 @@ typedef struct s_cub3d
 	int			d;
 	int			t_right;
 	int			t_left;
-
-	int			orientation[(int) WIN_WIDTH];
 	char		**map;
 	char		*NO;
 	char		*SO;

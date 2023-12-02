@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/30 18:32:09 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/02 21:34:56 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ void	free_cub3d(t_cub3d *cub3d)
 			free(cub3d->path);
 		if (cub3d->temp != NULL)
 			free(cub3d->temp);
+		if (cub3d->win != NULL)
+			mlx_clear_window(cub3d->mlx, cub3d->win);
+		if (cub3d->img.img != NULL)
+			mlx_destroy_image(cub3d->mlx, cub3d->img.img);
+		if (cub3d->mlx != NULL)
+			free(cub3d->mlx);
 	}
 }
 
