@@ -6,11 +6,40 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/02 03:54:49 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:01:45 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+int	key_hook(int keycode, void *param)
+{
+	(void)param; // Ignoriamo il parametro in questo esempio
+
+	// Stampiamo il codice del tasto premuto
+	printf("Key pressed: %d\n", keycode);
+
+	return 0;
+}
+
+int	mouse_hook(int keycode, void *param)
+{
+	(void)param; // Ignoriamo il parametro in questo esempio
+
+	// Stampiamo il codice del tasto premuto
+	printf("Key pressed: %d\n", keycode);
+
+	return 0;
+}
+
+int mouse_move_hook(int x, int y, void *param)
+{
+    // Stampa delle coordinate del movimento del mouse
+    printf("Mouse moved to (%d, %d)\n", x, y);
+
+    // Aggiungi qui la logica per gestire il movimento del mouse
+
+    return 0;
+}
 
 int	main(int argc, char **argv)
 {
@@ -33,6 +62,10 @@ int	main(int argc, char **argv)
 	my_mlx_ceiling(&img, cub3d.ceiling_int);
 	my_mlx_floor(&img, cub3d.floor_int);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_mouse_hook(mlx_win, mouse_hook, mlx);
+	mlx_hook(mlx_win, 2, 1L << 0, key_hook, mlx);
+	mlx_hook(mlx_win, 6, 0, &mouse_move_hook, mlx); // 6 corrisponde a MotionNotify
+	mlx_hook(mlx_win, 4, 1L << 0, mouse_move_hook, mlx);
 	mlx_loop(mlx);
 	ft_exit("RIUSCITO TUTTO", &cub3d);
 }
