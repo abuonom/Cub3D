@@ -10,6 +10,7 @@
 
 ## Please use configure script
 
+
 all	: do_configure
 
 do_configure	:

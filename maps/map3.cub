@@ -3,8 +3,8 @@ SO ./srcs/sprites/test/redbrick.xpm
 WE ./srcs/sprites/test/mossy.xpm
 EA ./srcs/sprites/test/bluestone.xpm
 
-F 220,100,0
-C 225,30,0
+F 66,132,245
+C 54,20,7
 
 1111111111
 1000100001  1

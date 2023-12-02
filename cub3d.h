@@ -19,10 +19,10 @@
 # include <fcntl.h>
 # include <math.h>
 # include "./libft/libft.h"
-
+# include "./mlx_linux/mlx.h"
 
 # define WIN_WIDTH 1280.0
-# define WIN_HEIGHT 720.0
+# define WIN_HEIGHT 420.0
 
 # define NORTH 0
 # define SOUTH 1
@@ -54,6 +54,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 } t_img;
 
 typedef struct s_player
@@ -65,10 +67,11 @@ typedef struct s_player
 
 typedef struct s_rgb
 {
+	int		t;
 	int		r;
 	int		g;
 	int		b;
-}	t_rgb;
+}	t_trgb;
 
 typedef struct s_cub3d
 {
@@ -89,8 +92,8 @@ typedef struct s_cub3d
 	char		*ceiling;
 	int			ceiling_int;
 	int			floor_int;
-	t_rgb		floor_rgb;
-	t_rgb		ceiling_rgb;
+	t_trgb		floor_rgb;
+	t_trgb		ceiling_rgb;
 	float		wall_height[(int) WIN_WIDTH];
 	float		radius_dim[(int) WIN_WIDTH];
 	t_player	player;
@@ -103,19 +106,15 @@ typedef struct s_cub3d
 	int			fd;
 }	t_cub3d;
 
-void	ft_rad(t_cub3d *cub3d);
-void	ft_pgtowall_dist(t_cub3d *cub3d, float angle, int i);
-void	ft_orientation(t_cub3d *cub3d, float angle, float dist, int i);
-void	draw_colums(t_cub3d *cub3d, int x, int color);
-void	draw_walls(t_cub3d *cub3d);
-void	pixel_put(t_img *img, int x, int y, int color);
-
-int		keys(int keycode, t_cub3d *cub3d);
-
-
-//abuonomo
-
+//mlx functions
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		encode_color(t_trgb rgb);
+void	my_mlx_floor(t_img *data, int color);
+void	my_mlx_ceiling(t_img *data, int color);
+//exit functions
 void	ft_exit(char *str, t_cub3d *cub3d);
+void	free_map(char **map);
+//check functions
 void	check_parameter(int argc, char **argv, t_cub3d *cub3d);
 void	check_and_init_map(char *path, t_cub3d *cub3d);
 void	stampa_matrice_char(char **matrice);
@@ -125,10 +124,11 @@ void	check_trash(char **map, t_cub3d *cub3d);
 void	check_first_last_row(char **map, t_cub3d *cub3d);
 int		is_param_not_present(char *tmp, t_cub3d *cub3d);
 void	add_parameter(char *tmp, t_cub3d *cub3d);
-void	init_rgb(t_cub3d *cub3d);
 void	check_extension(int argc, char **argv, t_cub3d *cub3d);
 void	spaces_with_zero(char **map);
 void	resize_map(char **map);
-void	free_map(char **map);
+//init functions
+void	init_trgb(t_cub3d *cub3d);
+void	init_cub3d(t_cub3d *cub3d);
 
 #endif

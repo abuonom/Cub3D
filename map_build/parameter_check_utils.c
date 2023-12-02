@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:32:58 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/27 17:33:25 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/02 03:45:38 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,4 @@ int	is_param_not_present(char *tmp, t_cub3d *cub3d)
 	if (tmp[0] == 'C' && tmp[1] == ' ' && cub3d->ceiling == NULL)
 		return (1);
 	return (0);
-}
-
-void	init_rgb(t_cub3d *cub3d)
-{
-	char	**tmp;
-
-	tmp = ft_split(cub3d->floor, ',');
-	cub3d->floor_rgb.r = ft_atoi(tmp[0]);
-	cub3d->floor_rgb.g = ft_atoi(tmp[1]);
-	cub3d->floor_rgb.b = ft_atoi(tmp[2]);
-	free(tmp[0]);
-	free(tmp[1]);
-	free(tmp[2]);
-	free(tmp);
-	tmp = ft_split(cub3d->ceiling, ',');
-	cub3d->ceiling_rgb.r = ft_atoi(tmp[0]);
-	cub3d->ceiling_rgb.g = ft_atoi(tmp[1]);
-	cub3d->ceiling_rgb.b = ft_atoi(tmp[2]);
-	free(tmp[0]);
-	free(tmp[1]);
-	free(tmp[2]);
-	free(tmp);
 }

@@ -1,9 +1,9 @@
 /*
-** mlx_int.h for mlx in 
-** 
+** mlx_int.h for mlx in
+**
 ** Made by Charlie Root
 ** Login   <ol@epitech.net>
-** 
+**
 ** Started on  Mon Jul 31 16:45:48 2000 Charlie Root
 ** Last update Wed May 25 16:44:16 2011 Olivier Crouzet
 */
@@ -18,8 +18,8 @@
 
 # define MLX_INT_H
 
-# include <stdlib.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
