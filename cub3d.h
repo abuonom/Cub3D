@@ -21,8 +21,8 @@
 # include "./libft/libft.h"
 # include "./mlx_linux/mlx.h"
 
-# define WIN_WIDTH 1280.0
-# define WIN_HEIGHT 420.0
+# define WIN_WIDTH 3280
+# define WIN_HEIGHT 960
 
 # define NORTH 0
 # define SOUTH 1
@@ -128,5 +128,6 @@ void	resize_map(char **map);
 //init functions
 void	init_trgb(t_cub3d *cub3d);
 void	init_cub3d(t_cub3d *cub3d);
-
+//hook functions
+int		cross_exit(int keycode, t_cub3d	*cub3d);
 #endif

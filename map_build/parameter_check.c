@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/30 18:18:46 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:44:49 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	param_full(char *tmp, t_cub3d *cub3d)
 		i++;
 	if (cub3d->ceiling != NULL)
 		i++;
-	if (i > 6)
+	if (i < 6)
 		ft_exit("Wrong parameter", cub3d);
 	return (i);
 }
@@ -64,6 +64,13 @@ void	check_extension(int argc, char **argv, t_cub3d *cub3d)
 	if (check_cub(argv[1]))
 		ft_exit("Wrong file extension", cub3d);
 }
+// void	validate_param(t_cub3d *cub3d)
+// {
+// 	check_xpm(cub3d);
+// 	printf("%d, %d\n", ft_isdigit_str(cub3d->ceiling),ft_isdigit_str(cub3d->floor));
+// 	if(ft_isdigit_str(cub3d->ceiling) == 1 || ft_isdigit_str(cub3d->floor) == 1)
+// 		ft_exit("Colors not digit",cub3d);
+// }
 
 void	check_parameter(int argc, char **argv, t_cub3d *cub3d)
 {
@@ -87,8 +94,8 @@ void	check_parameter(int argc, char **argv, t_cub3d *cub3d)
 		free(cub3d->temp);
 		cub3d->temp = get_next_line(fd);
 	}
-	param_full(cub3d->temp, cub3d);
 	close(fd);
+	//validate_param(cub3d); questa valida i parametri di texture e colori
 	if (cub3d->temp != NULL)
 		free(cub3d->temp);
 }

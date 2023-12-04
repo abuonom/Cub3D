@@ -17,6 +17,7 @@ SRC = $(wildcard *.c) \
 		$(wildcard exit/*.c) \
 		$(wildcard raycast/*.c) \
 		$(wildcard init/*.c) \
+		$(wildcard hook_handle/*.c) \
 
 OBJS = $(SRC:.c=.o)
 

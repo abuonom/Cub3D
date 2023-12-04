@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/02 03:51:46 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:49:13 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_cub3d(t_cub3d *cub3d)
 	cub3d->temp = NULL;
 	cub3d->mlx = NULL;
 	cub3d->win = NULL;
+	cub3d->img.img = NULL;
 }
 
 void	init_trgb(t_cub3d *cub3d)
@@ -33,12 +34,10 @@ void	init_trgb(t_cub3d *cub3d)
 
 	tmp = ft_split(cub3d->floor, ',');
 	cub3d->floor_rgb.r = ft_atoi(tmp[0]);
-	printf("r: %d\n", cub3d->floor_rgb.r);
 	cub3d->floor_rgb.g = ft_atoi(tmp[1]);
 	cub3d->floor_rgb.b = ft_atoi(tmp[2]);
 	cub3d->floor_rgb.t = 0;
 	cub3d->floor_int = encode_color(cub3d->floor_rgb);
-	printf("floor_int: %d\n", cub3d->floor_int);
 	free(tmp[0]);
 	free(tmp[1]);
 	free(tmp[2]);

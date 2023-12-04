@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:18:28 by mlongo            #+#    #+#             */
-/*   Updated: 2023/11/30 18:30:37 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:56:30 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ void	ft_free_buffer(int r, int fd, char **buffer);
 char	*ft_strjoin_get(char *str, char *buffer, int step);
 void	ft_movebuffer(char *buffer, int step);
 char	*ft_realloc_get(char *str, char *buffer, int step);
-
+int		ft_isdigit_str(char *str);
 #endif
