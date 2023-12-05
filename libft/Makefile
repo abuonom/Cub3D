@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+         #
+#    By: misidori <misidori@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:18:35 by mlongo            #+#    #+#              #
-#    Updated: 2023/11/30 18:30:27 by abuonomo         ###   ########.fr        #
+#    Updated: 2023/12/04 19:30:57 by misidori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ OBJS := ft_strlcpy.o ft_calloc.o ft_putnbr_fd.o ft_strdup.o ft_tolower.o \
 	ft_memcpy.o ft_putstr_fd.o ft_realloc.o ft_strcpy.o ft_strncpy.o ft_strcmp_env.o ft_strcat.o ft_strcasecmp.o\
 	ft_lstlast.o ft_lstiter.o ft_lstsize.o \
 	ft_lstadd_back.o ft_lstadd_front.o ft_lstclear.o ft_lstdelone.o \
-	ft_lstmap.o ft_lstnew.o get_next_line_bonus.o get_next_line_bonus_utils.o\
-
+	ft_lstmap.o ft_lstnew.o get_next_line_bonus.o get_next_line_bonus_utils.o \
+	ft_remove_char_in_str.o ft_free_array.o
+		
 FLAGS := -Wall -Werror -Wextra
 
 B_OBJS = ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o

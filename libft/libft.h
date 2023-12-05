@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:18:28 by mlongo            #+#    #+#             */
-/*   Updated: 2023/12/04 16:56:30 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:30:50 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,7 @@ char	*ft_strjoin_get(char *str, char *buffer, int step);
 void	ft_movebuffer(char *buffer, int step);
 char	*ft_realloc_get(char *str, char *buffer, int step);
 int		ft_isdigit_str(char *str);
+void	ft_remove_char_in_str(char *str, char c);
+void	ft_free_array(char **array);
+
 #endif
