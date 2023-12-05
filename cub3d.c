@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/04 19:24:01 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:00:54 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ void	game(t_cub3d	*cub3d)
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, WIN_WIDTH, WIN_HEIGHT, "SSCNAPOLI3D");
 	cub3d->img.img = mlx_new_image(cub3d->mlx ,WIN_WIDTH, WIN_HEIGHT);
-
-	//parte utile ma non necessaria in questa funzione
 	cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, &cub3d->img.bits, &cub3d->img.line,
-								&cub3d->img.endian);
-	my_mlx_ceiling(&cub3d->img, cub3d->ceiling_int);
-	my_mlx_floor(&cub3d->img, cub3d->floor_int);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img.img, 0, 0);
-	//fine parte utile ma non necessaria in questa funzione
-	mlx_mouse_hook(cub3d->win, mouse_hook, cub3d->mlx);
-	mlx_mouse_hide(cub3d->mlx, cub3d->win);
+	 							&cub3d->img.endian);
+	mlx_loop_hook(cub3d->mlx, game_loop, game);
+	// //parte utile ma non necessaria in questa funzione
+	// my_mlx_ceiling(&cub3d->img, cub3d->ceiling_int);
+	// my_mlx_floor(&cub3d->img, cub3d->floor_int);
+	// mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img.img, 0, 0);
+	// //fine parte utile ma non necessaria in questa funzione
+	// mlx_mouse_hook(cub3d->win, mouse_hook, cub3d->mlx);
+	// mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	mlx_hook(cub3d->win, 17, 1L << 17 , cross_exit, cub3d);
 	mlx_hook(cub3d->win, 2, 1L << 0, key_hook, cub3d);
 	mlx_hook(cub3d->win, 6, 1L << 6, mouse_move_hook, cub3d);

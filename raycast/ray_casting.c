@@ -12,7 +12,4 @@
 
 #include "../cub3d.h"
 
-void niente()
-{
-	printf("niente\n");
-}
+
