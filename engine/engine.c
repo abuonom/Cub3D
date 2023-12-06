@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/06 18:03:43 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:13:20 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,11 +196,11 @@ void	draw_vertical_line(t_render *data, t_cub3d *cub3d, int x)
 	i = 0;
 	wallPos_rayPosOnWall(data, cub3d);
 	while (i < data->drawStart)
-		my_mlx_pixel_put(&cub3d->img, x, i++, 0x000000FF);
+		my_mlx_pixel_put(&cub3d->img, x, i++, cub3d->ceiling_int);
 	draw_tex_wall(data, cub3d, x);
 	i = data->drawEnd;
 	while (i < WIN_HEIGHT)
-		my_mlx_pixel_put(&cub3d->img, x, i++, 0xFFFFFFFF);
+		my_mlx_pixel_put(&cub3d->img, x, i++, cub3d->floor_int);
 }
 
 void	calculate_fps(t_cub3d *cube)
