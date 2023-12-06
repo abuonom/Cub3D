@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/04 19:08:31 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:06:12 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ void	init_cub3d(t_cub3d *cub3d)
 	cub3d->mlx = NULL;
 	cub3d->win = NULL;
 	cub3d->img.img = NULL;
+	cub3d->card = ft_calloc(1, sizeof(t_cardinals));
+	cub3d->door = ft_calloc(1, sizeof(t_xpm_img));
+	cub3d->player.posX = 10;
+	cub3d->player.posY = 10;
+	cub3d->player.dirX = -1;
+	cub3d->player.dirY = 0;
+	cub3d->player.planeX = 0;
+	cub3d->player.planeY = 0.66;
+	cub3d->player.mov_dirX = 0;
+	cub3d->player.mov_dirY = 0;
+	cub3d->player.cam_dir = 0;
+	cub3d->player.rot_angle = 360;
+	cub3d->time = 0;
+	cub3d->oldTime = 0;
 }
 
 void	init_trgb(t_cub3d *cub3d)

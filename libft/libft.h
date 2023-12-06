@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:18:28 by mlongo            #+#    #+#             */
-/*   Updated: 2023/12/04 19:30:50 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:01:05 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ char	*ft_realloc_get(char *str, char *buffer, int step);
 int		ft_isdigit_str(char *str);
 void	ft_remove_char_in_str(char *str, char c);
 void	ft_free_array(char **array);
+int		ft_cmp_len_and_str(char *str1, char *str2, int len);
 
 #endif

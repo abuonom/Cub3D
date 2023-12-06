@@ -1,7 +1,7 @@
-NO ./srcs/sprites/test/purplestone.xpm
-SO ./srcs/sprites/test/redbrick.xpm
-WE ./srcs/sprites/test/mossy.xpm
-EA ./srcs/sprites/test/bluestone.xpm
+NO ./assets/purplestone.xpm
+SO ./assets/redbrick.xpm
+WE ./assets/mossy.xpm
+EA ./assets/bluestone.xpm
 
 F 66,132,245
 C 54,20,7
