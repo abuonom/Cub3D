@@ -201,6 +201,7 @@ void	resize_map(char **map);
 void	init_trgb(t_cub3d *cub3d);
 void	init_cub3d(t_cub3d *cub3d);
 void	init_render_data(t_render *data, t_cub3d *cube, int x);
+int		player_p(char flag, char **map);
 //hook functions
 int		cross_exit(int keycode, t_cub3d	*cub3d);
 

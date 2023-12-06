@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/05 18:06:12 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:19:52 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,10 @@
 
 void	init_cub3d(t_cub3d *cub3d)
 {
-	cub3d->map = NULL;
-	cub3d->NO = NULL;
-	cub3d->SO = NULL;
-	cub3d->WE = NULL;
-	cub3d->EA = NULL;
-	cub3d->floor = NULL;
-	cub3d->ceiling = NULL;
-	cub3d->path = NULL;
-	cub3d->temp = NULL;
-	cub3d->mlx = NULL;
-	cub3d->win = NULL;
-	cub3d->img.img = NULL;
 	cub3d->card = ft_calloc(1, sizeof(t_cardinals));
 	cub3d->door = ft_calloc(1, sizeof(t_xpm_img));
-	cub3d->player.posX = 10;
-	cub3d->player.posY = 10;
+	cub3d->player.posX = player_p('y',cub3d->map) + 0.5;
+	cub3d->player.posY = player_p('x',cub3d->map) + 0.5;
 	cub3d->player.dirX = -1;
 	cub3d->player.dirY = 0;
 	cub3d->player.planeX = 0;

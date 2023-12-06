@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/05 18:06:56 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:22:48 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,10 +181,10 @@ void	draw_tex_wall(t_render *data, t_cub3d *cube, int x)
 	y = data->drawStart;
 	while(y < data->drawEnd)
 	{
-		data->texY = (int)data->texPos % data->texHeight;
-		data->texPos += data->step;
-		set_color(data, cube, 4 * (int)(data->texHeight * data->texY + data->texX));
-		my_mlx_pixel_put(&cube->img, x, y++, data->color);
+		// data->texY = (int)data->texPos % data->texHeight;
+		// data->texPos += data->step;
+		// set_color(data, cube, 4 * (int)(data->texHeight * data->texY + data->texX));
+		my_mlx_pixel_put(&cube->img, x, y++, 0x0000FF00);
 	}
 }
 
