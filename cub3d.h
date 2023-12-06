@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
+# include <errno.h>
 # include "./libft/libft.h"
 # include "./mlx_linux/mlx.h"
 # include <sys/time.h>
@@ -186,7 +187,6 @@ void	my_mlx_ceiling(t_img *data, int color);
 void	ft_exit(char *str, t_cub3d *cub3d);
 void	free_map(char **map);
 //check functions
-void	check_parameter(int argc, char **argv, t_cub3d *cub3d);
 void	check_and_init_map(char *path, t_cub3d *cub3d);
 void	stampa_matrice_char(char **matrice);
 void	tab_with_spaces(char **map);
@@ -195,7 +195,6 @@ void	check_trash(char **map, t_cub3d *cub3d);
 void	check_first_last_row(char **map, t_cub3d *cub3d);
 int		is_param_not_present(char *tmp, t_cub3d *cub3d);
 void	add_parameter(char *tmp, t_cub3d *cub3d);
-void	check_extension(int argc, char **argv, t_cub3d *cub3d);
 void	spaces_with_zero(char **map);
 void	resize_map(char **map);
 //init functions
@@ -209,4 +208,22 @@ int	game_loop(t_cub3d *cube);
 void	perform_dda(t_render *data, t_cub3d *cub3d);
 void	draw_vertical_line(t_render *data, t_cub3d *cub3d, int x);
 void	render_map(t_cub3d *cube);
+
+/*	CHECK_FILE_CUB	*/
+
+void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d);
+void	ft_check_extension(int argc, char **argv, t_cub3d *cub3d);
+int		ft_param_full(char *tmp, t_cub3d *cub3d);
+int		ft_is_parameter(char *str);
+int		ft_check_cub(char *path);
+
+/*	CHECK_PARAMETERS.C	*/
+
+void	ft_check_parameters(t_cub3d *cub3d);
+void	ft_init_array_files(t_cub3d *cub3d, char ***no_so_we_ea);
+void	ft_check_magic_numbers(int bytes_read, char *buffer);
+void	ft_check_single_file_type(char *file_image);
+int		ft_check_file_xpm(t_cub3d *cub3d);
+
+
 #endif
