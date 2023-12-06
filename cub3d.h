@@ -28,7 +28,7 @@
 # include <stdint.h>
 
 # define WIN_WIDTH 900
-# define WIN_HEIGHT 900
+# define WIN_HEIGHT 500
 
 # define NORTH 0
 # define SOUTH 1
@@ -136,10 +136,6 @@ typedef	struct s_cardinals
 	t_xpm_img	south_wall;
 	t_xpm_img	east_wall;
 	t_xpm_img	west_wall;
-	char	*north_path;
-	char	*south_path;
-	char	*east_path;
-	char	*west_path;
 }	t_cardinals;
 
 typedef struct s_cub3d
@@ -175,7 +171,7 @@ typedef struct s_cub3d
 	t_img		img;
 	t_player	player;
 	t_xpm_img	*door;
-	t_cardinals	*card;
+	t_cardinals	*wall;
 }	t_cub3d;
 
 //mlx functions
@@ -205,7 +201,7 @@ int		player_p(char flag, char **map);
 //hook functions
 int		cross_exit(int keycode, t_cub3d	*cub3d);
 
-int	game_loop(t_cub3d *cube);
+int		game_loop(t_cub3d *cube);
 void	perform_dda(t_render *data, t_cub3d *cub3d);
 void	draw_vertical_line(t_render *data, t_cub3d *cub3d, int x);
 void	render_map(t_cub3d *cube);
@@ -226,5 +222,6 @@ void	ft_check_magic_numbers(int bytes_read, char *buffer);
 void	ft_check_single_file_type(char *file_image);
 int		ft_check_file_xpm(t_cub3d *cub3d);
 
-
+/*LOADING TEXTURE*/
+void	ft_load_texture(t_cub3d *cub3d);
 #endif

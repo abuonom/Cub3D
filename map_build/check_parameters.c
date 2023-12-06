@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:47:17 by misidori          #+#    #+#             */
-/*   Updated: 2023/12/06 16:18:11 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:48:33 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	ft_check_parameters(t_cub3d *cub3d)
 {
 	ft_check_file_xpm(cub3d);
-	ft_remove_char_in_str(cub3d->floor, '\n');
-	ft_remove_char_in_str(cub3d->ceiling, '\n');
 	if (ft_isdigit_str(cub3d->ceiling) == 1
 		|| ft_isdigit_str(cub3d->floor) == 1)
 	{
@@ -58,7 +56,6 @@ void	ft_check_single_file_type(char *file_image)
 	int		file_descriptor;
 	int		bytes_read;
 
-	ft_remove_char_in_str(file_image, '\n');
 	file_descriptor = open(file_image, O_RDONLY);
 	if (file_descriptor == -1)
 	{

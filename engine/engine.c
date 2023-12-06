@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/06 16:22:48 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:03:43 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,23 +106,23 @@ void	set_tex_width_height(t_render *data, t_cub3d *cub3d)
 	{
 		if (data->rayDirY > 0)
 		{
-			data->texWidth = cub3d->card->north_wall.width;
-			data->texHeight = cub3d->card->north_wall.height;
+			data->texWidth = cub3d->wall->north_wall.width;
+			data->texHeight = cub3d->wall->north_wall.height;
 			return ;
 		}
-		data->texWidth = cub3d->card->south_wall.width;
-		data->texHeight = cub3d->card->south_wall.height;
+		data->texWidth = cub3d->wall->south_wall.width;
+		data->texHeight = cub3d->wall->south_wall.height;
 	}
 	else
 	{
 		if (data->rayDirX > 0)
 		{
-			data->texWidth = cub3d->card->east_wall.width;
-			data->texHeight = cub3d->card->east_wall.height;
+			data->texWidth = cub3d->wall->east_wall.width;
+			data->texHeight = cub3d->wall->east_wall.height;
 			return ;
 		}
-		data->texWidth = cub3d->card->west_wall.width;
-		data->texHeight = cub3d->card->west_wall.height;
+		data->texWidth = cub3d->wall->west_wall.width;
+		data->texHeight = cub3d->wall->west_wall.height;
 	}
 }
 
@@ -160,16 +160,16 @@ void	set_color(t_render *data, t_cub3d *cube, int shift)
 	else if (data->side == 1)
 	{
 		if (data->rayDirY > 0)
-			data->color = *(unsigned int *)(cube->card->north_wall.addr + shift);
+			data->color = *(unsigned int *)(cube->wall->north_wall.addr + shift);
 		else
-			data->color = *(unsigned int *)(cube->card->south_wall.addr + shift);
+			data->color = *(unsigned int *)(cube->wall->south_wall.addr + shift);
 	}
 	else
 	{
 		if (data->rayDirX > 0)
-			data->color = *(unsigned int *)(cube->card->east_wall.addr + shift);
+			data->color = *(unsigned int *)(cube->wall->east_wall.addr + shift);
 		else
-			data->color = *(unsigned int *)(cube->card->west_wall.addr + shift);
+			data->color = *(unsigned int *)(cube->wall->west_wall.addr + shift);
 	}
 }
 
@@ -181,10 +181,10 @@ void	draw_tex_wall(t_render *data, t_cub3d *cube, int x)
 	y = data->drawStart;
 	while(y < data->drawEnd)
 	{
-		// data->texY = (int)data->texPos % data->texHeight;
-		// data->texPos += data->step;
-		// set_color(data, cube, 4 * (int)(data->texHeight * data->texY + data->texX));
-		my_mlx_pixel_put(&cube->img, x, y++, 0x0000FF00);
+		data->texY = (int)data->texPos % data->texHeight;
+		data->texPos += data->step;
+		set_color(data, cube, 4 * (int)(data->texHeight * data->texY + data->texX));
+		my_mlx_pixel_put(&cube->img, x, y++, data->color);
 	}
 }
 
@@ -223,49 +223,49 @@ void	calculate_fps(t_cub3d *cube)
 		WIN_WIDTH - 50, 20, -1, number);
 	free(number);
 }
-void	forward_backward(t_cub3d *cube, double moveSpeed)
-{
-	if (cube->player.mov_dirY == 1)
-	{
-		if (cube->map[(int)(cube->player.posX + cube->player.dirX * moveSpeed)][(int)cube->player.posY] == false)
-			cube->player.posX += cube->player.dirX * moveSpeed;
-		if (cube->map[(int)(cube->player.posX)][(int)(cube->player.posY + cube->player.dirY * moveSpeed)] == false)
-			cube->player.posY += cube->player.dirY * moveSpeed;
-	}
-	if (cube->player.mov_dirY == -1)
-	{
-		if (cube->map[(int)(cube->player.posX - cube->player.dirX * moveSpeed)][(int)cube->player.posY] == false)
-			cube->player.posX -= cube->player.dirX * moveSpeed;
-		if (cube->map[(int)cube->player.posX][(int)(cube->player.posY - cube->player.dirY * moveSpeed)] == false)
-			cube->player.posY -= cube->player.dirY * moveSpeed;
-	}
-}
+// void	forward_backward(t_cub3d *cube, double moveSpeed)
+// {
+// 	if (cube->player.mov_dirY == 1)
+// 	{
+// 		if (cube->map[(int)(cube->player.posX + cube->player.dirX * moveSpeed)][(int)cube->player.posY] == '0')
+// 			cube->player.posX += cube->player.dirX * moveSpeed;
+// 		if (cube->map[(int)(cube->player.posX)][(int)(cube->player.posY + cube->player.dirY * moveSpeed)] == '0')
+// 			cube->player.posY += cube->player.dirY * moveSpeed;
+// 	}
+// 	if (cube->player.mov_dirY == -1)
+// 	{
+// 		if (cube->map[(int)(cube->player.posX - cube->player.dirX * moveSpeed)][(int)cube->player.posY] == '0')
+// 			cube->player.posX -= cube->player.dirX * moveSpeed;
+// 		if (cube->map[(int)cube->player.posX][(int)(cube->player.posY - cube->player.dirY * moveSpeed)] == '0')
+// 			cube->player.posY -= cube->player.dirY * moveSpeed;
+// 	}
+// }
 
-void	left_right(t_cub3d *cube, double moveSpeed)
-{
-	if (cube->player.mov_dirX == -1)
-	{
-		if (cube->map[(int)(cube->player.posX - cube->player.dirY * moveSpeed)][(int)cube->player.posY] == false)
-			cube->player.posX -= cube->player.dirY * moveSpeed;
-		if (cube->map[(int)(cube->player.posX)][(int)(cube->player.posY + cube->player.dirX * moveSpeed)] == false)
-			cube->player.posY += (cube->player.dirX) * moveSpeed;
-	}
-	if (cube->player.mov_dirX == 1)
-	{
-		if (cube->map[(int)(cube->player.posX + cube->player.dirY * moveSpeed)][(int)cube->player.posY] == false)
-			cube->player.posX += cube->player.dirY * moveSpeed;
-		if (cube->map[(int)cube->player.posX][(int)(cube->player.posY - cube->player.dirX * moveSpeed)] == false)
-			cube->player.posY -= (cube->player.dirX) * moveSpeed;
-	}
-}
+// void	left_right(t_cub3d *cube, double moveSpeed)
+// {
+// 	if (cube->player.mov_dirX == -1)
+// 	{
+// 		if (cube->map[(int)(cube->player.posX - cube->player.dirY * moveSpeed)][(int)cube->player.posY] == '0')
+// 			cube->player.posX -= cube->player.dirY * moveSpeed;
+// 		if (cube->map[(int)(cube->player.posX)][(int)(cube->player.posY + cube->player.dirX * moveSpeed)] == '0')
+// 			cube->player.posY += (cube->player.dirX) * moveSpeed;
+// 	}
+// 	if (cube->player.mov_dirX == 1)
+// 	{
+// 		if (cube->map[(int)(cube->player.posX + cube->player.dirY * moveSpeed)][(int)cube->player.posY] == '0')
+// 			cube->player.posX += cube->player.dirY * moveSpeed;
+// 		if (cube->map[(int)cube->player.posX][(int)(cube->player.posY - cube->player.dirX * moveSpeed)] == '0')
+// 			cube->player.posY -= (cube->player.dirX) * moveSpeed;
+// 	}
+// }
 
 void	update_movement(t_cub3d *cube)
 {
 	double moveSpeed;
 
-	moveSpeed = cube->frameTime * 5.0;
-	forward_backward(cube, moveSpeed);
-	left_right(cube, moveSpeed);
+	moveSpeed = cube->frameTime * 2.0;
+	//forward_backward(cube, moveSpeed); //da scrive
+	//left_right(cube, moveSpeed); //da scrive
 }
 
 void	update_rotation(t_cub3d *cube)
@@ -300,8 +300,8 @@ int	game_loop(t_cub3d *cube)
 	render_map(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->img.img, 0, 0);
 	calculate_fps(cube);
-	update_movement(cube);
-	update_rotation(cube);
+	//update_movement(cube);
+	//update_rotation(cube);
 	return (0);
 }
 

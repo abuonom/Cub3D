@@ -6,13 +6,36 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/06 16:21:14 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:00:25 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-int	key_hook(int keycode, t_cub3d	*cub3d)
+int	key_hook_pressed(int keycode, t_cub3d	*cub3d)
 {
+	if(keycode == W)
+		cub3d->player.mov_dirY = 1;
+	if(keycode == A)
+		cub3d->player.mov_dirX = -1;
+	if(keycode == S)
+		cub3d->player.mov_dirY = -1;
+	if(keycode == D)
+		cub3d->player.mov_dirX = 1;
+	if(keycode == ESC)
+		ft_exit("ADL PAGA", cub3d);
+	return 0;
+}
+
+int	key_hook_released(int keycode, t_cub3d	*cub3d)
+{
+	if(keycode == W)
+		cub3d->player.mov_dirY = 0;
+	else if(keycode == A)
+		cub3d->player.mov_dirX = 0;
+	else if(keycode == S)
+		cub3d->player.mov_dirY = 0;
+	else if(keycode == D)
+		cub3d->player.mov_dirX = 0;
 	if(keycode == ESC)
 		ft_exit("ADL PAGA", cub3d);
 	return 0;
@@ -30,8 +53,6 @@ int	mouse_hook(int keycode, t_cub3d	*cub3d)
 int mouse_move_hook(int x, int y, t_cub3d	*cub3d)
 {
     // Stampa delle coordinate del movimento del mouse
-    printf("Mouse moved to (%d, %d)\n", x, y);
-
     // Aggiungi qui la logica per gestire il movimento del mouse
 
     return 0;
@@ -39,24 +60,12 @@ int mouse_move_hook(int x, int y, t_cub3d	*cub3d)
 
 void	game(t_cub3d	*cub3d)
 {
-	int image_h;
-	int image_w;
-	void *image;
-
-	cub3d->mlx = mlx_init();
-	cub3d->win = mlx_new_window(cub3d->mlx, WIN_WIDTH, WIN_HEIGHT, "SSCNAPOLI3D");
-	cub3d->img.img = mlx_new_image(cub3d->mlx ,WIN_WIDTH, WIN_HEIGHT);
-	cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, &cub3d->img.bits, &cub3d->img.line,
-								&cub3d->img.endian);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img.img, 0, 0);
-	//my_mlx_ceiling(&cub3d->img, cub3d->ceiling_int);
-	//my_mlx_floor(&cub3d->img, cub3d->floor_int);
-	mlx_mouse_hook(cub3d->win, mouse_hook, cub3d->mlx);
-	mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	mlx_hook(cub3d->win, 17, 1L << 17 , cross_exit, cub3d);
-	mlx_hook(cub3d->win, 2, 1L << 0, key_hook, cub3d);
-	mlx_hook(cub3d->win, 6, 1L << 6, mouse_move_hook, cub3d);
+	mlx_hook(cub3d->win, 2, 1L << 0, key_hook_pressed, cub3d);
+	mlx_hook(cub3d->win, 3, 1L << 1, key_hook_released, cub3d);
+	// mlx_hook(cub3d->win, 6, 1L << 6, mouse_move_hook, cub3d);
 	mlx_loop_hook(cub3d->mlx, game_loop, cub3d);
+	// mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	mlx_loop(cub3d->mlx);
 }
 int	main(int argc, char **argv)
