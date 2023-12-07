@@ -1,7 +1,7 @@
-NO ./assets/purplestone.xpm
-SO ./assets/redbrick.xpm
-WE ./assets/mossy.xpm
-EA ./assets/bluestone.xpm
+NO ./assets/idolo.xpm
+SO ./assets/idolo.xpm
+WE ./assets/idolo.xpm
+EA ./assets/idolo.xpm
 
 F 66,132,245
 C 54,20,7

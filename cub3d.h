@@ -224,4 +224,7 @@ int		ft_check_file_xpm(t_cub3d *cub3d);
 
 /*LOADING TEXTURE*/
 void	ft_load_texture(t_cub3d *cub3d);
+
+/*MOVE*/
+void	update_movement(t_cub3d *cube);
 #endif

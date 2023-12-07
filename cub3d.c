@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/06 18:00:25 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:20:48 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ int	key_hook_pressed(int keycode, t_cub3d	*cub3d)
 		cub3d->player.mov_dirY = -1;
 	if(keycode == D)
 		cub3d->player.mov_dirX = 1;
+	if(keycode == LEFT)
+		cub3d->player.cam_dir = -1;
+	if (keycode == RIGHT)
+		cub3d->player.cam_dir = 1;
 	if(keycode == ESC)
 		ft_exit("ADL PAGA", cub3d);
 	return 0;
@@ -30,12 +34,16 @@ int	key_hook_released(int keycode, t_cub3d	*cub3d)
 {
 	if(keycode == W)
 		cub3d->player.mov_dirY = 0;
-	else if(keycode == A)
+	if(keycode == A)
 		cub3d->player.mov_dirX = 0;
-	else if(keycode == S)
+	if(keycode == S)
 		cub3d->player.mov_dirY = 0;
-	else if(keycode == D)
+	if(keycode == D)
 		cub3d->player.mov_dirX = 0;
+	if(keycode == LEFT)
+		cub3d->player.cam_dir = 0;
+	if (keycode == RIGHT)
+		cub3d->player.cam_dir = 0;
 	if(keycode == ESC)
 		ft_exit("ADL PAGA", cub3d);
 	return 0;
@@ -74,15 +82,7 @@ int	main(int argc, char **argv)
 	ft_check_extension(argc, argv, &cub3d);
 	ft_check_file_cub(argc, argv, &cub3d);
 	check_and_init_map(argv[1], &cub3d);
-	init_trgb(&cub3d);
 	init_cub3d(&cub3d);
-	stampa_matrice_char(cub3d.map);
 	game(&cub3d);
 	ft_exit("RIUSCITO TUTTO", &cub3d);
-}
-
-void	stampa_matrice_char(char **matrice)
-{
-	for (int i = 0; matrice[i]; i++)
-		printf("%s\n", matrice[i]);
 }

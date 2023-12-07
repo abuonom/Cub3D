@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/06 18:13:20 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:16:55 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,85 +223,14 @@ void	calculate_fps(t_cub3d *cube)
 		WIN_WIDTH - 50, 20, -1, number);
 	free(number);
 }
-// void	forward_backward(t_cub3d *cube, double moveSpeed)
-// {
-// 	if (cube->player.mov_dirY == 1)
-// 	{
-// 		if (cube->map[(int)(cube->player.posX + cube->player.dirX * moveSpeed)][(int)cube->player.posY] == '0')
-// 			cube->player.posX += cube->player.dirX * moveSpeed;
-// 		if (cube->map[(int)(cube->player.posX)][(int)(cube->player.posY + cube->player.dirY * moveSpeed)] == '0')
-// 			cube->player.posY += cube->player.dirY * moveSpeed;
-// 	}
-// 	if (cube->player.mov_dirY == -1)
-// 	{
-// 		if (cube->map[(int)(cube->player.posX - cube->player.dirX * moveSpeed)][(int)cube->player.posY] == '0')
-// 			cube->player.posX -= cube->player.dirX * moveSpeed;
-// 		if (cube->map[(int)cube->player.posX][(int)(cube->player.posY - cube->player.dirY * moveSpeed)] == '0')
-// 			cube->player.posY -= cube->player.dirY * moveSpeed;
-// 	}
-// }
-
-// void	left_right(t_cub3d *cube, double moveSpeed)
-// {
-// 	if (cube->player.mov_dirX == -1)
-// 	{
-// 		if (cube->map[(int)(cube->player.posX - cube->player.dirY * moveSpeed)][(int)cube->player.posY] == '0')
-// 			cube->player.posX -= cube->player.dirY * moveSpeed;
-// 		if (cube->map[(int)(cube->player.posX)][(int)(cube->player.posY + cube->player.dirX * moveSpeed)] == '0')
-// 			cube->player.posY += (cube->player.dirX) * moveSpeed;
-// 	}
-// 	if (cube->player.mov_dirX == 1)
-// 	{
-// 		if (cube->map[(int)(cube->player.posX + cube->player.dirY * moveSpeed)][(int)cube->player.posY] == '0')
-// 			cube->player.posX += cube->player.dirY * moveSpeed;
-// 		if (cube->map[(int)cube->player.posX][(int)(cube->player.posY - cube->player.dirX * moveSpeed)] == '0')
-// 			cube->player.posY -= (cube->player.dirX) * moveSpeed;
-// 	}
-// }
-
-void	update_movement(t_cub3d *cube)
-{
-	double moveSpeed;
-
-	moveSpeed = cube->frameTime * 2.0;
-	//forward_backward(cube, moveSpeed); //da scrive
-	//left_right(cube, moveSpeed); //da scrive
-}
-
-void	update_rotation(t_cub3d *cube)
-{
-	double rotSpeed;
-	double oldDirX;
-	double oldPlaneX;
-
-	rotSpeed = cube->frameTime * 3.0;
-	if (cube->player.cam_dir == 1)
-	{
-		oldDirX = cube->player.dirX;
-		cube->player.dirX = cube->player.dirX * cos(-rotSpeed) - cube->player.dirY * sin(-rotSpeed);
-		cube->player.dirY = oldDirX * sin(-rotSpeed) + cube->player.dirY * cos(-rotSpeed);
-		oldPlaneX = cube->player.planeX;
-		cube->player.planeX = cube->player.planeX * cos(-rotSpeed) - cube->player.planeY * sin(-rotSpeed);
-		cube->player.planeY = oldPlaneX * sin(-rotSpeed) + cube->player.planeY * cos(-rotSpeed);
-	}
-	if (cube->player.cam_dir == -1)
-	{
-		oldDirX = cube->player.dirX;
-		cube->player.dirX = cube->player.dirX * cos(rotSpeed) - cube->player.dirY * sin(rotSpeed);
-		cube->player.dirY = oldDirX * sin(rotSpeed) + cube->player.dirY * cos(rotSpeed);
-		oldPlaneX = cube->player.planeX;
-		cube->player.planeX = cube->player.planeX * cos(rotSpeed) - cube->player.planeY * sin(rotSpeed);
-		cube->player.planeY = oldPlaneX * sin(rotSpeed) + cube->player.planeY * cos(rotSpeed);
-	}
-}
 
 int	game_loop(t_cub3d *cube)
 {
 	render_map(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->img.img, 0, 0);
 	calculate_fps(cube);
-	//update_movement(cube);
-	//update_rotation(cube);
+	update_movement(cube);
+	update_rotation(cube);
 	return (0);
 }
 
