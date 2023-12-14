@@ -227,4 +227,5 @@ void	ft_load_texture(t_cub3d *cub3d);
 
 /*MOVE*/
 void	update_movement(t_cub3d *cube);
+void	update_rotation(t_cub3d *cube);		
 #endif
