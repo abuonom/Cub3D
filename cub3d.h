@@ -56,6 +56,18 @@
 
 typedef enum {false, true} bool;
 
+typedef struct s_drawsprite
+{
+	int				drawx[2];
+	int				drawy[2];
+	double			pos[2];
+	double			transf[2];
+	double			inv_det;
+	int				spr_screen_x;
+	int				spr_h;
+	int				spr_w;
+}	t_drawsprite;
+
 typedef struct s_img
 {
 	void	*img;
@@ -66,6 +78,26 @@ typedef struct s_img
 	int		height;
 	int		width;
 } t_img;
+
+typedef struct s_tex {
+	t_img			xpm;
+	int				w;
+	int				h;
+}	t_tex;
+
+
+typedef struct s_object
+{
+	char			type;
+	int				x;
+	int				y;
+	double			dist;
+	t_tex			*tex;
+	struct s_object	*next;
+	struct s_object	*sort;
+}	t_object;
+
+
 
 typedef struct s_rgb
 {
@@ -172,6 +204,8 @@ typedef struct s_cub3d
 	t_player	player;
 	t_xpm_img	*door;
 	t_cardinals	*wall;
+	t_object	*objs;
+	t_object	*sorted;
 }	t_cub3d;
 
 //mlx functions
@@ -227,5 +261,5 @@ void	ft_load_texture(t_cub3d *cub3d);
 
 /*MOVE*/
 void	update_movement(t_cub3d *cube);
-void	update_rotation(t_cub3d *cube);		
+void	update_rotation(t_cub3d *cube);
 #endif
