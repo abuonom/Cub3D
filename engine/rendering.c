@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/18 17:28:50 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:30:04 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	render_map(t_cub3d *cube)
 		zbuffer[x] = data.perpWallDist;
 		x++;
 	}
+	//RIGA 332 DEL CPP
 }

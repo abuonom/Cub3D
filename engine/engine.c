@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/18 16:57:24 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:27:00 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 Per gli sprite mi serve:
 
-X e Y del centro dello sprite, che per me sono fisse e le prendo dalla matrice + 0.5
+X e Y del centro dello sprite, che per me sono fisse e le prendo dalla matrice + 0.5 :D
 distanza del player allo sprite (senza fare radice), la storo in un array e lo sorto per distanza decrescente
 Ciclo per ogni sprite dell'arrat e calcolo la trasformata inversa della matrice di proiezione
 Prendo l'altezza dello sprite e la larghezza dello sprite
