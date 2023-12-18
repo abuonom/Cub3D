@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_handle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/04 18:24:06 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:44:50 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ void	free_cub3d(t_cub3d *cub3d)
 
 void	ft_exit(char *str, t_cub3d *cub3d)
 {
-	free_cub3d(cub3d);
-	perror(str);
+//	if (cub3d)
+//		free_cub3d(cub3d);
+	(void)	cub3d;
+	printf("Error: %s\n", str);
 	exit(1);
 }

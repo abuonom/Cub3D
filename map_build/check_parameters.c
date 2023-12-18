@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:47:17 by misidori          #+#    #+#             */
-/*   Updated: 2023/12/06 17:48:33 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:32:51 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	ft_check_single_file_type(char *file_image)
 	file_descriptor = open(file_image, O_RDONLY);
 	if (file_descriptor == -1)
 	{
-		printf("Error: %s\n", strerror(errno));
+		printf("Error with image file: %s\n", strerror(errno));
 		exit(1);
 	}
 	bytes_read = read(file_descriptor, buffer, BUFFER_SIZE);
 	if (bytes_read < 0)
 	{
-		printf("Error: %s\n", strerror(errno));
+		printf("Error with image file: %s\n", strerror(errno));
 		close(file_descriptor);
 		exit(1);
 	}
@@ -73,7 +73,7 @@ void	ft_check_single_file_type(char *file_image)
 	ft_check_magic_numbers(bytes_read, buffer);
 	if (close(file_descriptor) < 0)
 	{
-		printf("Error: %s\n", strerror(errno));
+		printf("Error with image file: %s\n", strerror(errno));
 		exit(1);
 	}
 }

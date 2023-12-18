@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/06 14:05:39 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:26:45 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
+	printf("fd: %d\n", fd);
 	if (fd < 0)
 		ft_exit("Error opening file", cub3d);
 	cub3d->temp = get_next_line(fd);
+	if (cub3d->temp == NULL)
+		ft_exit("Error opening file.1", cub3d);
 	while (cub3d->temp != NULL)
 	{
 		if (ft_is_parameter(cub3d->temp))
@@ -27,7 +30,7 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 			if (is_param_not_present(cub3d->temp, cub3d))
 				add_parameter(cub3d->temp, cub3d);
 			else
-				ft_exit("Parametro duplicato", cub3d);
+				ft_exit("Duplicated parameter", cub3d);
 		}
 		else if (cub3d->temp[0] != '\n' && ft_param_full(cub3d->temp, cub3d) < 6)
 			break ;
@@ -59,6 +62,7 @@ int	ft_check_cub(char *path)
 	int	i;
 
 	i = ft_strlen(path);
+	printf("stampa: %s\n", path);
 	if (path[i - 1] != 'b' || path[i - 2] != 'u'
 		|| path[i - 3] != 'c' || path[i - 4] != '.')
 		return (1);
@@ -94,3 +98,4 @@ void	ft_check_extension(int argc, char **argv, t_cub3d *cub3d)
 	if (ft_check_cub(argv[1]))
 		ft_exit("Wrong file extension", cub3d);
 }
+
