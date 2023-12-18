@@ -56,18 +56,6 @@
 
 typedef enum {false, true} bool;
 
-typedef struct s_drawsprite
-{
-	int				drawx[2];
-	int				drawy[2];
-	double			pos[2];
-	double			transf[2];
-	double			inv_det;
-	int				spr_screen_x;
-	int				spr_h;
-	int				spr_w;
-}	t_drawsprite;
-
 typedef struct s_img
 {
 	void	*img;
@@ -78,26 +66,6 @@ typedef struct s_img
 	int		height;
 	int		width;
 } t_img;
-
-typedef struct s_tex {
-	t_img			xpm;
-	int				w;
-	int				h;
-}	t_tex;
-
-
-typedef struct s_object
-{
-	char			type;
-	int				x;
-	int				y;
-	double			dist;
-	t_tex			*tex;
-	struct s_object	*next;
-	struct s_object	*sort;
-}	t_object;
-
-
 
 typedef struct s_rgb
 {
@@ -170,42 +138,59 @@ typedef	struct s_cardinals
 	t_xpm_img	west_wall;
 }	t_cardinals;
 
+typedef	struct s_sprite
+{
+  double 	x;
+  double	y;
+} t_sprite;
+
+typedef	struct s_sprite_text
+{
+	t_xpm_img	egg1;
+	t_xpm_img	egg2;
+	t_xpm_img	egg3;
+	t_xpm_img	egg4;
+} t_sprite_text;
+
 typedef struct s_cub3d
 {
-	int			w;
-	int			a;
-	int			s;
-	int			d;
-	int			t_right;
-	int			t_left;
-	int			ceiling_int;
-	int			floor_int;
-	int			fd;
-	int			fps;
-	char		**map;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
-	char		*floor;
-	char		*ceiling;
-	char		*path;
-	char		*temp;
-	float		wall_height[(int) WIN_WIDTH];
-	float		radius_dim[(int) WIN_WIDTH];
-	void		*mlx;
-	void		*win;
-	double		time;
-	double		oldTime;
-	double		frameTime;
-	t_trgb		ceiling_rgb;
-	t_trgb		floor_rgb;
-	t_img		img;
-	t_player	player;
-	t_xpm_img	*door;
-	t_cardinals	*wall;
-	t_object	*objs;
-	t_object	*sorted;
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+	int				t_right;
+	int				t_left;
+	int				ceiling_int;
+	int				floor_int;
+	int				fd;
+	int				fps;
+	char			**map;
+	char			*NO;
+	char			*SO;
+	char			*WE;
+	char			*EA;
+	char			*floor;
+	char			*ceiling;
+	char			*path;
+	char			*temp;
+	float			wall_height[(int) WIN_WIDTH];
+	float			radius_dim[(int) WIN_WIDTH];
+	void			*mlx;
+	void			*win;
+	double			time;
+	double			oldTime;
+	double			frameTime;
+	double			ZBuffer[(int)WIN_WIDTH];
+	int				*spriteOrder;
+	double			*spriteDistance;
+	t_sprite_text	sprite_text;
+	t_trgb			ceiling_rgb;
+	t_trgb			floor_rgb;
+	t_img			img;
+	t_player		player;
+	t_xpm_img		*door;
+	t_cardinals		*wall;
+	t_sprite		*sprite;
 }	t_cub3d;
 
 //mlx functions

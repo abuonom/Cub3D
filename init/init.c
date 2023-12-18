@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/07 18:19:44 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:11:17 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,59 @@ void	init_trgb(t_cub3d *cub3d)
 	free(tmp[2]);
 	free(tmp);
 }
+
+void	ft_sprite_position(t_cub3d *cub3d)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (cub3d->map[i])
+	{
+		while (cub3d->map[i][j])
+		{
+			if (cub3d->map[i][j] == '2')
+			{
+				cub3d->sprite[k].x = j + 0.5;
+				cub3d->sprite[k].y = i + 0.5;
+				k++;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+void	init_sprite(t_cub3d *cub3d)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (cub3d->map[i])
+	{
+		while (cub3d->map[i][j])
+		{
+			if (cub3d->map[i][j] == '2')
+				k++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	cub3d->sprite = ft_calloc(k + 1, sizeof(t_sprite));
+	ft_sprite_position(cub3d);
+	cub3d->spriteOrder = ft_calloc(k + 1, sizeof(int));
+	cub3d->spriteDistance = ft_calloc(k + 1, sizeof(double));
+}
+
 void	init_cub3d(t_cub3d *cub3d)
 {
 	cub3d->mlx = mlx_init();
@@ -59,6 +112,7 @@ void	init_cub3d(t_cub3d *cub3d)
 	cub3d->time = 0;
 	cub3d->oldTime = 0;
 	cub3d->map[player_p('y',cub3d->map)][player_p('x',cub3d->map)] = '0';
+	init_sprite(cub3d);
 	init_trgb(cub3d);
 	ft_load_texture(cub3d);
 }
