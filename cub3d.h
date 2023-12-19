@@ -29,7 +29,9 @@
 
 # define WIN_WIDTH 900
 # define WIN_HEIGHT 500
-
+# define uDiv 1
+# define vDiv 1
+# define vMove 0.0
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
@@ -138,12 +140,6 @@ typedef	struct s_cardinals
 	t_xpm_img	west_wall;
 }	t_cardinals;
 
-typedef	struct s_sprite
-{
-  double 	x;
-  double	y;
-} t_sprite;
-
 typedef	struct s_sprite_text
 {
 	t_xpm_img	egg1;
@@ -151,6 +147,27 @@ typedef	struct s_sprite_text
 	t_xpm_img	egg3;
 	t_xpm_img	egg4;
 } t_sprite_text;
+
+typedef	struct s_sprite
+{
+	int				drawx[2];
+	int				drawy[2];
+	double			x;
+	double			y;
+	double			transf_x;
+	double			transf_y;
+	double			inv_det;
+	double			distance;
+	int				spr_screen_x;
+	int				spr_h;
+	int				spr_w;
+} t_sprite;
+
+typedef struct s_tex {
+	t_img	xpm;
+	int		w;
+	int		h;
+}			t_tex;
 
 typedef struct s_cub3d
 {
@@ -181,8 +198,7 @@ typedef struct s_cub3d
 	double			oldTime;
 	double			frameTime;
 	double			ZBuffer[(int)WIN_WIDTH];
-	int				*spriteOrder;
-	double			*spriteDistance;
+	int				sprite_num;
 	t_sprite_text	sprite_text;
 	t_trgb			ceiling_rgb;
 	t_trgb			floor_rgb;

@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:27:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/11/30 18:44:25 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:27:51 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	check_trash(char **map, t_cub3d *cub3d)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (!ft_strrchr("NSEW 10", map[i][j]))
+			if (!ft_strrchr("NSEW 102", map[i][j]))
 				ft_exit("Not valid character in map", cub3d);
 			j++;
 		}
