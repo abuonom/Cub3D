@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_cub.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/18 15:26:45 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:13:15 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
-	printf("fd: %d\n", fd);
 	if (fd < 0)
 		ft_exit("Error opening file", cub3d);
 	cub3d->temp = get_next_line(fd);

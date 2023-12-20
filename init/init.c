@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/19 18:40:53 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:35:19 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	ft_sprite_position(t_cub3d *cub3d)
 			{
 				cub3d->sprite[k].x = j + 0.5;
 				cub3d->sprite[k].y = i + 0.5;
-				cub3d->sprite[k].distance = ((cub3d->player.posX - cub3d->sprite[k].x) * (cub3d->player.posX - cub3d->sprite[k].x) + (cub3d->player.posY - cub3d->sprite[k].y) * (cub3d->player.posX - cub3d->sprite[k].y));
-				printf("sprite[%d].distance = %f\n", k, cub3d->sprite[k].distance);
+				cub3d->sprite[k].distance = ((cub3d->player.posY - cub3d->sprite[k].x) * (cub3d->player.posY - cub3d->sprite[k].x) + (cub3d->player.posX - cub3d->sprite[k].y) * (cub3d->player.posX - cub3d->sprite[k].y));
+				printf("cub3d->sprite[k].distance: %f\n", cub3d->sprite[k].distance);
 				k++;
 			}
 			j++;

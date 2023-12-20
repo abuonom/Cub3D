@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/19 18:41:20 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:42:55 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,14 @@ void draw_sprites(t_cub3d *cub3d, double zbuffer)
 	{
 		if (cub3d->sprite[i].distance > .1)
 		{
-			printf("sprite[%d].distance = %f\n", i, cub3d->sprite[i].distance);
-			spr.x = (cub3d->sprite[i].x + 0.5) - cub3d->player.posX;
-			spr.y = (cub3d->sprite[i].x + 0.5) - cub3d->player.posX;
+			spr.x = (cub3d->sprite[i].x) - cub3d->player.posY;
+			spr.y = (cub3d->sprite[i].y) - cub3d->player.posX;
 			spr.inv_det = 1.0 / (cub3d->player.planeX
 					* cub3d->player.dirY
 					- cub3d->player.dirX * cub3d->player.planeY);
 			spr.transf_x = spr.inv_det * (cub3d->player.dirY * spr.x
 					- cub3d->player.dirX * spr.y);
-			spr.transf_y = spr.inv_det * (cub3d->player.planeY
+			spr.transf_y = spr.inv_det * (-cub3d->player.planeY
 					* spr.x
 					+ cub3d->player.planeX * spr.y);
 			spr.spr_screen_x = (((double)(WIN_WIDTH) / 2.) * (1.
@@ -149,5 +148,6 @@ void render_map(t_cub3d *cube)
 		zbuffer[x] = data.perpWallDist;
 		x++;
 	}
+		sort_sprites(cube);
 		draw_sprites(cube, *zbuffer);
 }
