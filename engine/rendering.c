@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/20 18:42:55 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/20 20:09:54 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void sort_sprites(t_cub3d *cub3d)
 
 static void	draw_sprite_1(t_cub3d *cub3d, t_sprite spr)
 {
+	printf("spr.trasf_y dentro draw: %f\n", spr.transf_y);
 	spr.spr_h = fabs(WIN_HEIGHT / spr.transf_y);
+	printf("spr.spr_h: %f\n", spr.spr_h);
 	spr.drawy[0] = -spr.spr_h / 2 + WIN_HEIGHT / 2;
 	if (spr.drawy[0] < 0)
 		spr.drawy[0] = 0;
@@ -92,10 +94,10 @@ static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, t_sprite spr_print,
 			v = spr->drawy[0] - 1;
 			while (++v < spr->drawy[1])
 			{
+				printf("v: %d\n", v);
 				d = (v) * 256 - WIN_HEIGHT * 128 + spr->spr_h * 128;
 				tex[1] = ((d * game->sprite_text.egg1.height) / spr->spr_h) / 256;
 				color = get_pixel_sprite(game->sprite_text.egg1.img, tex[0], tex[1]);
-				printf("color: %d\n", color);
 				if (color & 0x0FFFFFFF)
 					my_mlx_pixel_put(&game->img, stripe, v, color);
 			}
@@ -116,18 +118,25 @@ void draw_sprites(t_cub3d *cub3d, double zbuffer)
 		{
 			spr.x = (cub3d->sprite[i].x) - cub3d->player.posY;
 			spr.y = (cub3d->sprite[i].y) - cub3d->player.posX;
-			spr.inv_det = 1.0 / (cub3d->player.planeX
-					* cub3d->player.dirY
-					- cub3d->player.dirX * cub3d->player.planeY);
+			printf("spr.x: %f\n", spr.x);
+			printf("spr.y: %f\n", spr.y);
+			spr.inv_det = 1.0 / (cub3d->player.planeY
+					* cub3d->player.dirX
+					- cub3d->player.dirY * cub3d->player.planeX);
+			printf("spr.inv_det: %f\n", spr.inv_det);
 			spr.transf_x = spr.inv_det * (cub3d->player.dirY * spr.x
 					- cub3d->player.dirX * spr.y);
+			printf("spr.transf_x: %f\n", spr.transf_x);
 			spr.transf_y = spr.inv_det * (-cub3d->player.planeY
 					* spr.x
 					+ cub3d->player.planeX * spr.y);
+			printf("spr.transf_y: %f\n", spr.transf_y);
 			spr.spr_screen_x = (((double)(WIN_WIDTH) / 2.) * (1.
 						+ spr.transf_x / spr.transf_y));
+			printf("spr.spr_screen_x: %f\n", spr.spr_screen_x);
 			draw_sprite_1(cub3d, spr);
 			draw_sprite_2(cub3d, &spr, cub3d->sprite[i], &zbuffer);
+			printf("\n");
 		}
 		i++;
 	}
