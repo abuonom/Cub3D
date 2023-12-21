@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 18:54:03 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:10:00 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,25 @@ unsigned long get_pixel(t_img *img, int x, int y)
 
 void sort_sprites(t_cub3d *cub3d)
 {
-    int	i;
-	int	j;
-    t_sprite tempSprite;
+	int i;
+	int j;
+	t_sprite tmp;
 
 	i = 0;
-	while(i < cub3d->sprite_num - 1)
+	while (i < cub3d->sprite_num)
 	{
-		j = i + 1;
+		j = 0;
 		while (j < cub3d->sprite_num - 1)
 		{
-			if (cub3d->sprite[i].distance < cub3d->sprite[j].distance)
+			if (cub3d->sprite[j].distance < cub3d->sprite[j + 1].distance)
 			{
-				tempSprite = cub3d->sprite[i];
-				cub3d->sprite[i] = cub3d->sprite[j];
-				cub3d->sprite[j] = tempSprite;
+				tmp = cub3d->sprite[j];
+				cub3d->sprite[j] = cub3d->sprite[j + 1];
+				cub3d->sprite[j + 1] = tmp;
 			}
 			j++;
 		}
+		i++;
 	}
 }
 
