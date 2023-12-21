@@ -29,16 +29,7 @@
 
 # define WIN_WIDTH 900
 # define WIN_HEIGHT 500
-# define uDiv 1
-# define vDiv 1
-# define vMove 0.0
-# define NORTH 0
-# define SOUTH 1
-# define WEST 2
-# define EAST 3
-
 # define RAD 0.0174533
-
 # define ESC 65307
 # define W 119
 # define A 97
@@ -49,25 +40,16 @@
 # define SHIFT 65505
 # define SPACE 32
 
-#define BLACK 0x000000
-#define RED 0xff0000
-#define GREEN 0x5d9560
-#define WHITE 0xfdfbfb
-#define PURPLE 0x9b329f
-
-
-typedef enum {false, true} bool;
-
 typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		bits;   //bits x pixel
-	int		line; //line lenght
+	int		bits;
+	int		line;
 	int		endian;
 	int		height;
 	int		width;
-} t_img;
+}	t_img;
 
 typedef struct s_rgb
 {
@@ -77,7 +59,7 @@ typedef struct s_rgb
 	int		b;
 }	t_trgb;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	double	posX;
 	double	posY;
@@ -101,7 +83,6 @@ typedef struct s_xpm_img
 	int		width;
 	int		height;
 }	t_xpm_img;
-
 
 typedef struct s_render
 {
@@ -132,7 +113,7 @@ typedef struct s_render
 	double				texPos;
 }	t_render;
 
-typedef	struct s_cardinals
+typedef struct s_cardinals
 {
 	t_xpm_img	north_wall;
 	t_xpm_img	south_wall;
@@ -140,12 +121,12 @@ typedef	struct s_cardinals
 	t_xpm_img	west_wall;
 }	t_cardinals;
 
-typedef	struct s_sprite_text
+typedef struct s_sprite_text
 {
 	t_xpm_img	egg;
-} t_sprite_text;
+}	t_sprite_text;
 
-typedef	struct s_sprite
+typedef struct s_sprite
 {
 	int				drawx[2];
 	int				drawy[2];
@@ -158,13 +139,13 @@ typedef	struct s_sprite
 	int				spr_screen_x;
 	int				spr_h;
 	int				spr_w;
-} t_sprite;
+}	t_sprite;
 
 typedef struct s_tex {
 	t_img	xpm;
 	int		w;
 	int		h;
-}			t_tex;
+}	t_tex;
 
 typedef struct s_cub3d
 {
@@ -208,67 +189,67 @@ typedef struct s_cub3d
 	t_sprite		*sprite;
 }	t_cub3d;
 
-//mlx functions
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-int		encode_color(t_trgb rgb);
-void	my_mlx_floor(t_img *data, int color);
-void	my_mlx_ceiling(t_img *data, int color);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int				encode_color(t_trgb rgb);
+void			my_mlx_floor(t_img *data, int color);
+void			my_mlx_ceiling(t_img *data, int color);
 //exit functions
-void	ft_exit(char *str, t_cub3d *cub3d);
-void	free_map(char **map);
+void			ft_exit(char *str, t_cub3d *cub3d);
+void			free_map(char **map);
 //check functions
-void	check_and_init_map(char *path, t_cub3d *cub3d);
-void	stampa_matrice_char(char **matrice);
-void	tab_with_spaces(char **map);
-void	check_duplicate(char **map, t_cub3d *cub3d);
-void	check_trash(char **map, t_cub3d *cub3d);
-void	check_first_last_row(char **map, t_cub3d *cub3d);
-int		is_param_not_present(char *tmp, t_cub3d *cub3d);
-void	add_parameter(char *tmp, t_cub3d *cub3d);
-void	spaces_with_zero(char **map);
-void	resize_map(char **map);
+void			check_and_init_map(char *path, t_cub3d *cub3d);
+void			stampa_matrice_char(char **matrice);
+void			tab_with_spaces(char **map);
+void			check_duplicate(char **map, t_cub3d *cub3d);
+void			check_trash(char **map, t_cub3d *cub3d);
+void			check_first_last_row(char **map, t_cub3d *cub3d);
+int				is_param_not_present(char *tmp, t_cub3d *cub3d);
+void			add_parameter(char *tmp, t_cub3d *cub3d);
+void			spaces_with_zero(char **map);
+void			resize_map(char **map);
 //init functions
-void	init_trgb(t_cub3d *cub3d);
-void	init_cub3d(t_cub3d *cub3d);
-void	init_render_data(t_render *data, t_cub3d *cube, int x);
-int		player_p(char flag, char **map);
+void			init_trgb(t_cub3d *cub3d);
+void			init_cub3d(t_cub3d *cub3d);
+void			init_render_data(t_render *data, t_cub3d *cube, int x);
+int				player_p(char flag, char **map);
 //hook functions
-int		cross_exit(int keycode, t_cub3d	*cub3d);
-
-int		game_loop(t_cub3d *cube);
-void	perform_dda(t_render *data, t_cub3d *cub3d);
-void	draw_vertical_line(t_render *data, t_cub3d *cub3d, int x);
-void	render_map(t_cub3d *cube);
+int				cross_exit(int keycode, t_cub3d	*cub3d);
+int				game_loop(t_cub3d *cube);
+void			perform_dda(t_render *data, t_cub3d *cub3d);
+void			draw_vertical_line(t_render *data, t_cub3d *cub3d, int x);
+void			render_map(t_cub3d *cube);
 
 /*	CHECK_FILE_CUB	*/
 
-void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d);
-void	ft_check_extension(int argc, char **argv, t_cub3d *cub3d);
-int		ft_param_full(char *tmp, t_cub3d *cub3d);
-int		ft_is_parameter(char *str);
-int		ft_check_cub(char *path);
+void			ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d);
+void			ft_check_extension(int argc, char **argv, t_cub3d *cub3d);
+int				ft_param_full(char *tmp, t_cub3d *cub3d);
+int				ft_is_parameter(char *str);
+int				ft_check_cub(char *path);
 
 /*	CHECK_PARAMETERS.C	*/
 
-void	ft_check_parameters(t_cub3d *cub3d);
-void	ft_init_array_files(t_cub3d *cub3d, char ***no_so_we_ea);
-void	ft_check_magic_numbers(int bytes_read, char *buffer);
-void	ft_check_single_file_type(char *file_image);
-int		ft_check_file_xpm(t_cub3d *cub3d);
+void			ft_check_parameters(t_cub3d *cub3d);
+void			ft_init_array_files(t_cub3d *cub3d, char ***no_so_we_ea);
+void			ft_check_magic_numbers(int bytes_read, char *buffer);
+void			ft_check_single_file_type(char *file_image);
+int				ft_check_file_xpm(t_cub3d *cub3d);
 
 /*LOADING TEXTURE*/
-void	ft_load_texture(t_cub3d *cub3d);
-void	load_image(t_xpm_img *img, char *path, t_cub3d *cub3d);
+void			ft_load_texture(t_cub3d *cub3d);
+void			load_image(t_xpm_img *img, char *path, t_cub3d *cub3d);
 
 /*MOVE*/
-void	update_movement(t_cub3d *cube);
-void	update_rotation(t_cub3d *cube);
-void	rotate_camera(float angle, t_cub3d *cube);
+void			update_movement(t_cub3d *cube);
+void			update_rotation(t_cub3d *cube);
+void			rotate_camera(float angle, t_cub3d *cube);
 
 /*SPRITE UTILS*/
 void			sort_sprites(t_cub3d *cub3d);
 void			frame_sprite(t_cub3d *cub3d);
 unsigned long	get_pixel_sprite(t_xpm_img *img, int x, int y);
-double	ft_distance(double x1, double y1, double x2, double y2);
-void	ft_sprite_position(t_cub3d *cub3d);
+double			ft_distance(double x1, double y1, double x2, double y2);
+void			ft_sprite_position(t_cub3d *cub3d);
+void			ft_sleep(u_int64_t time);
+u_int64_t		get_time(void);
 #endif
