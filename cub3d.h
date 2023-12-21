@@ -258,9 +258,17 @@ int		ft_check_file_xpm(t_cub3d *cub3d);
 
 /*LOADING TEXTURE*/
 void	ft_load_texture(t_cub3d *cub3d);
+void	load_image(t_xpm_img *img, char *path, t_cub3d *cub3d);
 
 /*MOVE*/
 void	update_movement(t_cub3d *cube);
 void	update_rotation(t_cub3d *cube);
 void	rotate_camera(float angle, t_cub3d *cube);
+
+/*SPRITE UTILS*/
+void			sort_sprites(t_cub3d *cub3d);
+void			frame_sprite(t_cub3d *cub3d);
+unsigned long	get_pixel_sprite(t_xpm_img *img, int x, int y);
+double	ft_distance(double x1, double y1, double x2, double y2);
+void	ft_sprite_position(t_cub3d *cub3d);
 #endif

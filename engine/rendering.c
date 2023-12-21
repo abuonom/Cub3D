@@ -6,85 +6,11 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 19:46:06 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:20:37 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void frame_sprite(t_cub3d *cub3d)
-{
-	if (cub3d->frame_count % 20 == 0)
-	{
-		cub3d->current_sprite++;
-		if (cub3d->current_sprite > 4)
-			cub3d->current_sprite = 1;
-	}
-	if (cub3d->current_sprite == 1)
-	{
-	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg1.xpm", &cub3d->egg.width, &cub3d->egg.height);
-	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
-	}
-	if(cub3d->current_sprite == 2)
-	{
-	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg2.xpm", &cub3d->egg.width, &cub3d->egg.height);
-	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
-	}
-	if(cub3d->current_sprite == 3)
-	{
-	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg3.xpm", &cub3d->egg.width, &cub3d->egg.height);
-	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
-	}
-	if(cub3d->current_sprite == 4)
-	{
-	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg4.xpm", &cub3d->egg.width, &cub3d->egg.height);
-	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
-	}
-}
-
-unsigned long get_pixel_sprite(t_xpm_img *img, int x, int y)
-{
-	char *dest;
-
-	if (x < 0 || x >= 64 || y < 0 || y >= 64)
-		return (1);
-	dest = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	return (*(unsigned long *)dest);
-}
-
-unsigned long get_pixel(t_img *img, int x, int y)
-{
-	char *dest;
-
-	if (x < 0 || x >= 64 || y < 0 || y >= 64)
-		return (1);
-	dest = img->addr + (y * img->line + x * (img->bits / 8));
-	return (*(unsigned long *)dest);
-}
-
-void sort_sprites(t_cub3d *cub3d)
-{
-	int i;
-	int j;
-	t_sprite tmp;
-
-	i = 0;
-	while (i < cub3d->sprite_num)
-	{
-		j = 0;
-		while (j < cub3d->sprite_num - 1)
-		{
-			if (cub3d->sprite[j].distance < cub3d->sprite[j + 1].distance)
-			{
-				tmp = cub3d->sprite[j];
-				cub3d->sprite[j] = cub3d->sprite[j + 1];
-				cub3d->sprite[j + 1] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 static void	draw_sprite_1(t_cub3d *cub3d, t_sprite *spr)
 {
@@ -134,10 +60,10 @@ static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, t_sprite spr_print,
 	}
 }
 
-void draw_sprites(t_cub3d *cub3d, double zbuffer)
+void	draw_sprites(t_cub3d *cub3d, double zbuffer)
 {
-	int i;
-	t_sprite spr; // lo sprite che sto stampando
+	int			i;
+	t_sprite	spr;
 
 	i = 0;
 	while (i < cub3d->sprite_num)
@@ -163,11 +89,11 @@ void draw_sprites(t_cub3d *cub3d, double zbuffer)
 	}
 }
 
-void render_map(t_cub3d *cube)
+void	render_map(t_cub3d *cube)
 {
-	t_render data;
-	int x;
-	double zbuffer[WIN_WIDTH];
+	t_render	data;
+	int			x;
+	double		zbuffer[WIN_WIDTH];
 
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -178,7 +104,7 @@ void render_map(t_cub3d *cube)
 		zbuffer[x] = data.perpWallDist;
 		x++;
 	}
-		sort_sprites(cube);
-		frame_sprite(cube);
-		draw_sprites(cube, *zbuffer);
+	sort_sprites(cube);
+	frame_sprite(cube);
+	draw_sprites(cube, *zbuffer);
 }

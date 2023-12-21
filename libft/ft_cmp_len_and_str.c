@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cmp_len_and_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:44:05 by misidori          #+#    #+#             */
-/*   Updated: 2023/12/06 13:28:21 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:44:50 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	ft_strncmp2(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
 
 int	ft_cmp_len_and_str(char *str1, char *str2, int len)
 {

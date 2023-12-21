@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:53:08 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/04 17:53:31 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:54:32 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	cross_exit(int keycode, t_cub3d	*cub3d)
 {
 	ft_exit("ADL PAGA", cub3d);
-	return 0;
+	return (0);
 }

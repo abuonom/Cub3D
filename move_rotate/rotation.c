@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:46:22 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:07:04 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:36:07 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,50 @@ void	rotate_camera(float angle, t_cub3d *cube)
 	cube->player.planeY = new_plane_y;
 }
 
-void	rotate_right(t_cub3d *cube, double rotSpeed, double oldDirX, double oldPlaneX)
+void	rotate_right(t_cub3d *cube, double rotSpeed,
+	double oldDirX, double oldPlaneX)
 {
 	rotSpeed = cube->frameTime * 3.0;
 	if (cube->player.cam_dir == 1)
 	{
 		oldDirX = cube->player.dirX;
-		cube->player.dirX = cube->player.dirX * cos(-rotSpeed) - cube->player.dirY * sin(-rotSpeed);
-		cube->player.dirY = oldDirX * sin(-rotSpeed) + cube->player.dirY * cos(-rotSpeed);
+		cube->player.dirX = cube->player.dirX * cos(-rotSpeed)
+			- cube->player.dirY * sin(-rotSpeed);
+		cube->player.dirY = oldDirX * sin(-rotSpeed)
+			+ cube->player.dirY * cos(-rotSpeed);
 		oldPlaneX = cube->player.planeX;
-		cube->player.planeX = cube->player.planeX * cos(-rotSpeed) - cube->player.planeY * sin(-rotSpeed);
-		cube->player.planeY = oldPlaneX * sin(-rotSpeed) + cube->player.planeY * cos(-rotSpeed);
+		cube->player.planeX = cube->player.planeX * cos(-rotSpeed)
+			- cube->player.planeY * sin(-rotSpeed);
+		cube->player.planeY = oldPlaneX * sin(-rotSpeed)
+			+ cube->player.planeY * cos(-rotSpeed);
 	}
 }
-void	rotate_left(t_cub3d *cube, double rotSpeed, double oldDirX, double oldPlaneX)
+
+void	rotate_left(t_cub3d *cube, double rotSpeed,
+	double oldDirX, double oldPlaneX)
 {
 	if (cube->player.cam_dir == -1)
 	{
 		oldDirX = cube->player.dirX;
-		cube->player.dirX = cube->player.dirX * cos(rotSpeed) - cube->player.dirY * sin(rotSpeed);
-		cube->player.dirY = oldDirX * sin(rotSpeed) + cube->player.dirY * cos(rotSpeed);
+		cube->player.dirX = cube->player.dirX * cos(rotSpeed)
+			- cube->player.dirY * sin(rotSpeed);
+		cube->player.dirY = oldDirX * sin(rotSpeed)
+			+ cube->player.dirY * cos(rotSpeed);
 		oldPlaneX = cube->player.planeX;
-		cube->player.planeX = cube->player.planeX * cos(rotSpeed) - cube->player.planeY * sin(rotSpeed);
-		cube->player.planeY = oldPlaneX * sin(rotSpeed) + cube->player.planeY * cos(rotSpeed);
+		cube->player.planeX = cube->player.planeX * cos(rotSpeed)
+			- cube->player.planeY * sin(rotSpeed);
+		cube->player.planeY = oldPlaneX * sin(rotSpeed)
+			+ cube->player.planeY * cos(rotSpeed);
 	}
 }
 
 void	update_rotation(t_cub3d *cube)
 {
-	double rotSpeed;
-	double oldDirX;
-	double oldPlaneX;
+	double	rot_speed;
+	double	old_dirx;
+	double	old_plane_x;
 
-	rotSpeed = cube->frameTime * 3.0;
-	rotate_right(cube, rotSpeed, oldDirX, oldPlaneX);
-	rotate_left(cube, rotSpeed, oldDirX, oldPlaneX);
+	rot_speed = cube->frameTime * 3.0;
+	rotate_right(cube, rot_speed, old_dirx, old_plane_x);
+	rotate_left(cube, rot_speed, old_dirx, old_plane_x);
 }
