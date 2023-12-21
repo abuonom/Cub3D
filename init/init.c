@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 18:59:39 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:37:28 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	init_cub3d(t_cub3d *cub3d)
 	cub3d->time = 0;
 	cub3d->oldTime = 0;
 	cub3d->map[player_p('y',cub3d->map)][player_p('x',cub3d->map)] = '0';
+	cub3d->current_sprite = 1;
+	cub3d->frame_count = 0;
 	init_sprite(cub3d);
 	init_trgb(cub3d);
 	ft_load_texture(cub3d);

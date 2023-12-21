@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/18 18:27:00 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:36:55 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ void	calculate_fps(t_cub3d *cube)
 {
 	char *number;
 
+	cube->frame_count++;
 	cube->oldTime = cube->time;
 	cube->time = get_time();
 	cube->frameTime = (cube->time - cube->oldTime) / 1000.0;

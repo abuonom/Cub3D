@@ -6,11 +6,41 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 19:10:00 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:46:06 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void frame_sprite(t_cub3d *cub3d)
+{
+	if (cub3d->frame_count % 20 == 0)
+	{
+		cub3d->current_sprite++;
+		if (cub3d->current_sprite > 4)
+			cub3d->current_sprite = 1;
+	}
+	if (cub3d->current_sprite == 1)
+	{
+	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg1.xpm", &cub3d->egg.width, &cub3d->egg.height);
+	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
+	}
+	if(cub3d->current_sprite == 2)
+	{
+	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg2.xpm", &cub3d->egg.width, &cub3d->egg.height);
+	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
+	}
+	if(cub3d->current_sprite == 3)
+	{
+	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg3.xpm", &cub3d->egg.width, &cub3d->egg.height);
+	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
+	}
+	if(cub3d->current_sprite == 4)
+	{
+	cub3d->egg.img = mlx_xpm_file_to_image(cub3d->mlx, "./assets/Egg4.xpm", &cub3d->egg.width, &cub3d->egg.height);
+	cub3d->egg.addr = mlx_get_data_addr(cub3d->egg.img, &cub3d->egg.bits_per_pixel, &cub3d->egg.line_length, &cub3d->egg.endian);
+	}
+}
 
 unsigned long get_pixel_sprite(t_xpm_img *img, int x, int y)
 {
@@ -87,15 +117,15 @@ static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, t_sprite spr_print,
 	while (stripe < spr->drawx[1])
 	{
 		tex[0] = (256 * (stripe - (-spr->spr_w / 2 + spr->spr_screen_x))
-				* game->sprite_text.egg1.width / spr->spr_w) / 256;
+				* game->egg.width / spr->spr_w) / 256;
 		if (spr->transf_y > 0 && spr->transf_y < zbuff[stripe])
 		{
 			v = spr->drawy[0] - 1;
 			while (++v < spr->drawy[1])
 			{
 				d = (v) * 256 - WIN_HEIGHT * 128 + spr->spr_h * 128;
-				tex[1] = ((d * game->sprite_text.egg1.height) / spr->spr_h) / 256;
-				color = get_pixel_sprite(&game->sprite_text.egg1, tex[0], tex[1]);
+				tex[1] = ((d * game->egg.height) / spr->spr_h) / 256;
+				color = get_pixel_sprite(&game->egg, tex[0], tex[1]);
 				if (color & 0x00FFFFFF)
 					my_mlx_pixel_put(&game->img, stripe, v, color);
 			}
@@ -107,7 +137,7 @@ static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, t_sprite spr_print,
 void draw_sprites(t_cub3d *cub3d, double zbuffer)
 {
 	int i;
-	t_sprite spr; //t_dsprite s
+	t_sprite spr; // lo sprite che sto stampando
 
 	i = 0;
 	while (i < cub3d->sprite_num)
@@ -149,5 +179,6 @@ void render_map(t_cub3d *cube)
 		x++;
 	}
 		sort_sprites(cube);
+		frame_sprite(cube);
 		draw_sprites(cube, *zbuffer);
 }

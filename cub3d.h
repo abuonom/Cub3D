@@ -142,10 +142,7 @@ typedef	struct s_cardinals
 
 typedef	struct s_sprite_text
 {
-	t_xpm_img	egg1;
-	t_xpm_img	egg2;
-	t_xpm_img	egg3;
-	t_xpm_img	egg4;
+	t_xpm_img	egg;
 } t_sprite_text;
 
 typedef	struct s_sprite
@@ -199,7 +196,9 @@ typedef struct s_cub3d
 	double			frameTime;
 	double			ZBuffer[(int)WIN_WIDTH];
 	int				sprite_num;
-	t_sprite_text	sprite_text;
+	int				current_sprite;
+	int				frame_count;
+	t_xpm_img		egg;
 	t_trgb			ceiling_rgb;
 	t_trgb			floor_rgb;
 	t_img			img;
@@ -263,4 +262,5 @@ void	ft_load_texture(t_cub3d *cub3d);
 /*MOVE*/
 void	update_movement(t_cub3d *cube);
 void	update_rotation(t_cub3d *cube);
+void	rotate_camera(float angle, t_cub3d *cube);
 #endif
