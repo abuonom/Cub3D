@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 18:58:48 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 20:08:10 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ void	wall_pos_ray_pos_on_wall(t_render *data, t_cub3d *cub3d)
 	if (data->draw_end >= WIN_HEIGHT)
 		data->draw_end = WIN_HEIGHT - 1;
 	if (data->side == 0)
-		data->wall_x = cub3d->player.posY + data->perp_wall_dist * data->ray_dir_y;
+		data->wall_x = cub3d->player.posY
+			+ data->perp_wall_dist * data->ray_dir_y;
 	else
-		data->wall_x = cub3d->player.posX + data->perp_wall_dist * data->ray_dir_x;
+		data->wall_x = cub3d->player.posX
+			+ data->perp_wall_dist * data->ray_dir_x;
 	data->wall_x -= (int)(data->wall_x);
 	set_tex_width_height(data, cub3d);
 	data->tex_x = (int)(data->wall_x * (double)data->tex_width);

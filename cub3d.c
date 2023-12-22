@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 19:49:52 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 21:47:02 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	mouse_move_hook(int x, int y, t_cub3d	*cub3d)
 	if (cub3d->player.rot_angle != 360)
 		new_rotation_angle = cub3d->player.rot_angle
 			- rotation_angle;
+	new_rotation_angle = -new_rotation_angle;
 	cub3d->player.rot_angle = rotation_angle;
 	rotate_camera(new_rotation_angle, cub3d);
 	return (0);

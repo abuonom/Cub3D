@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:55:12 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 20:13:17 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	free_map(char **map)
 		free(map);
 	}
 }
-
-void	free_cub3d(t_cub3d *cub3d)
+void	free_cub3d_1(t_cub3d *cub3d)
 {
-	if (cub3d != NULL)
+		if (cub3d != NULL)
 	{
 		if (cub3d->win != NULL)
 			mlx_clear_window(cub3d->mlx, cub3d->win);
@@ -44,6 +43,13 @@ void	free_cub3d(t_cub3d *cub3d)
 			free(cub3d->SO);
 		if (cub3d->WE != NULL)
 			free(cub3d->WE);
+	}
+}
+
+void	free_cub3d_2(t_cub3d *cub3d)
+{
+	if (cub3d != NULL)
+	{
 		if (cub3d->EA != NULL)
 			free(cub3d->EA);
 		if (cub3d->floor != NULL)
@@ -61,7 +67,8 @@ void	free_cub3d(t_cub3d *cub3d)
 
 void	ft_exit(char *str, t_cub3d *cub3d)
 {
-	(void) cub3d;
+	free_cub3d_1(cub3d);
+	free_cub3d_2(cub3d);
 	printf("Error: %s\n", str);
 	exit(1);
 }

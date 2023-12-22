@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:11:54 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 20:10:40 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 {
-	int		fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	cub3d->fd = open(argv[1], O_RDONLY);
+	if (cub3d->fd < 0)
 		ft_exit("Error opening file", cub3d);
-	cub3d->temp = get_next_line(fd);
+	cub3d->temp = get_next_line(cub3d->fd);
 	if (cub3d->temp == NULL)
 		ft_exit("Error opening file.1", cub3d);
 	while (cub3d->temp != NULL)
@@ -35,9 +33,9 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 			&& ft_param_full(cub3d->temp, cub3d) < 6)
 			break ;
 		free(cub3d->temp);
-		cub3d->temp = get_next_line(fd);
+		cub3d->temp = get_next_line(cub3d->fd);
 	}
-	close(fd);
+	close(cub3d->fd);
 	ft_check_parameters(cub3d);
 	if (cub3d->temp != NULL)
 		free(cub3d->temp);

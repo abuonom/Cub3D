@@ -155,11 +155,11 @@ typedef struct s_cub3d
 	int				a;
 	int				s;
 	int				d;
+	int				fd;
 	int				t_right;
 	int				t_left;
 	int				ceiling_int;
 	int				floor_int;
-	int				fd;
 	int				fps;
 	char			**map;
 	char			*NO;
