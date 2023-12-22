@@ -1,14 +1,14 @@
-NO ./srcs/sprites/test/purplestone.xpm
-SO ./srcs/sprites/test/redbrick.xpm
-WE ./srcs/sprites/test/mossy.xpm
-EA ./srcs/sprites/test/bluestone.xpm
+NO ./assets/wolf/bluestone.xpm
+SO ./assets/wolf/colorstone.xpm
+WE ./assets/wolf/mossy.xpm
+EA ./assets/wolf/redbrick.xpm
 
 F 50,50,50
 C 100,100,100
 
 111111111111111111111111
 100000000000000000000001
-100000000000000000000001
+100000000000200000000001
 100000000000000000000001
 100000111110000101010001
 100000100010000000000001

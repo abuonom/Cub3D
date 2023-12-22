@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:42:52 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 00:56:54 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	frame_sprite(t_cub3d *cub3d)
 			cub3d->current_sprite = 1;
 	}
 	if (cub3d->current_sprite == 1)
-		load_image(&cub3d->egg, "./assets/Egg1.xpm", cub3d);
+		load_image(&cub3d->egg, "./assets/sprite/Egg1.xpm", cub3d);
 	if (cub3d->current_sprite == 2)
-		load_image(&cub3d->egg, "./assets/Egg2.xpm", cub3d);
+		load_image(&cub3d->egg, "./assets/sprite/Egg2.xpm", cub3d);
 	if (cub3d->current_sprite == 3)
-		load_image(&cub3d->egg, "./assets/Egg3.xpm", cub3d);
+		load_image(&cub3d->egg, "./assets/sprite/Egg3.xpm", cub3d);
 	if (cub3d->current_sprite == 4)
-		load_image(&cub3d->egg, "./assets/Egg4.xpm", cub3d);
+		load_image(&cub3d->egg, "./assets/sprite/Egg4.xpm", cub3d);
 }
 
 unsigned long	get_pixel_sprite(t_xpm_img *img, int x, int y)

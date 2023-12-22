@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:32:50 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:40:22 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 00:56:31 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	ft_load_texture(t_cub3d *cub3d)
 	load_image(&cub3d->wall->south_wall, cub3d->SO, cub3d);
 	load_image(&cub3d->wall->west_wall, cub3d->WE, cub3d);
 	load_image(&cub3d->wall->east_wall, cub3d->EA, cub3d);
-	load_image(&cub3d->egg, "./assets/Egg1.xpm", cub3d);
+	load_image(&cub3d->egg, "./assets/sprite/Egg1.xpm", cub3d);
 }
