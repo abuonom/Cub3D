@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 15:28:10 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:37:24 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,13 @@ void	init_cub3d(t_cub3d *cub3d)
 			&cub3d->img.line,
 			&cub3d->img.endian);
 	cub3d->wall = ft_calloc(1, sizeof(t_cardinals));
-	cub3d->door = ft_calloc(1, sizeof(t_xpm_img));
 	cub3d->oldTime = 0;
 	cub3d->time = 0;
 	cub3d->current_sprite = 1;
 	cub3d->frame_count = 0;
 	init_player(cub3d);
 	init_sprite(cub3d);
+	init_doors(cub3d);
 	init_trgb(cub3d);
 	ft_load_texture(cub3d);
 }

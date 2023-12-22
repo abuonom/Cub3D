@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 22:58:30 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:33:45 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,29 @@ void	ft_sleep(u_int64_t time)
 
 void	init_step_direction(t_render *data, t_cub3d *cube)
 {
-	if (data->rayDirX < 0)
+	if (data->ray_dir_x < 0)
 	{
-		data->stepX = -1;
-		data->sideDistX = (cube->player.posX
-				- (int)data->mapX) * data->deltaDistX;
+		data->step_x = -1;
+		data->side_dist_x = (cube->player.posX
+				- (int)data->map_x) * data->delta_dist_x;
 	}
 	else
 	{
-		data->stepX = 1;
-		data->sideDistX = ((int)data->mapX + 1.0
-				- cube->player.posX) * data->deltaDistX;
+		data->step_x = 1;
+		data->side_dist_x = ((int)data->map_x + 1.0
+				- cube->player.posX) * data->delta_dist_x;
 	}
-	if (data->rayDirY < 0)
+	if (data->ray_dir_y < 0)
 	{
-		data->stepY = -1;
-		data->sideDistY = (cube->player.posY
-				- (int)data->mapY) * data->deltaDistY;
+		data->step_y = -1;
+		data->side_dist_y = (cube->player.posY
+				- (int)data->map_y) * data->delta_dist_y;
 	}
 	else
 	{
-		data->stepY = 1;
-		data->sideDistY = ((int)data->mapY + 1.0
-				- cube->player.posY) * data->deltaDistY;
+		data->step_y = 1;
+		data->side_dist_y = ((int)data->map_y + 1.0
+				- cube->player.posY) * data->delta_dist_y;
 	}
 }
 
@@ -62,38 +62,38 @@ void	perform_dda(t_render *data, t_cub3d *cub3d)
 {
 	while (data->hit == 0)
 	{
-		if (data->sideDistX < data->sideDistY)
+		if (data->side_dist_x < data->side_dist_y)
 		{
-			data->sideDistX += data->deltaDistX;
-			data->mapX += data->stepX;
+			data->side_dist_x += data->delta_dist_x;
+			data->map_x += data->step_x;
 			data->side = 0;
 		}
 		else
 		{
-			data->sideDistY += data->deltaDistY;
-			data->mapY += data->stepY;
+			data->side_dist_y += data->delta_dist_y;
+			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		if (cub3d->map[(int)data->mapX][(int)data->mapY] == '1')
+		if (cub3d->map[(int)data->map_x][(int)data->map_y] == '1')
 			data->hit = 1;
 	}
 }
 
 void	init_render_data(t_render *data, t_cub3d *cube, int x)
 {
-	data->cameraX = 2 * x / (double)WIN_WIDTH - 1;
-	data->rayDirX = cube->player.dirX + cube->player.planeX * data->cameraX;
-	data->rayDirY = cube->player.dirY + cube->player.planeY * data->cameraX;
-	data->mapX = (int)cube->player.posX;
-	data->mapY = (int)cube->player.posY;
-	if (data->rayDirX == 0)
-		data->deltaDistX = 1e30;
+	data->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	data->ray_dir_x = cube->player.dirX + cube->player.planeX * data->camera_x;
+	data->ray_dir_y = cube->player.dirY + cube->player.planeY * data->camera_x;
+	data->map_x = (int)cube->player.posX;
+	data->map_y = (int)cube->player.posY;
+	if (data->ray_dir_x == 0)
+		data->delta_dist_x = 1e30;
 	else
-		data->deltaDistX = fabs(1.0f / data->rayDirX);
-	if (data->rayDirY == 0)
-		data->deltaDistY = 1e30;
+		data->delta_dist_x = fabs(1.0f / data->ray_dir_x);
+	if (data->ray_dir_y == 0)
+		data->delta_dist_y = 1e30;
 	else
-		data->deltaDistY = fabs(1.0f / data->rayDirY);
+		data->delta_dist_y = fabs(1.0f / data->ray_dir_y);
 	data->hit = 0;
 	init_step_direction(data, cube);
 }

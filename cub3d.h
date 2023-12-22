@@ -86,31 +86,31 @@ typedef struct s_xpm_img
 
 typedef struct s_render
 {
-	double				mapX;
-	double				mapY;
-	double				stepX;
-	double				stepY;
+		double			map_x;
+	double				map_y;
+	double				step_x;
+	double				step_y;
 	int					hit;
 	int					side;
-	int					lineHeight;
-	int					drawStart;
-	int					drawEnd;
-	int					texWidth;
-	int					texHeight;
-	int					texX;
-	int					texY;
+	int					line_height;
+	int					draw_start;
+	int					draw_end;
+	int					tex_width;
+	int					tex_height;
+	int					tex_x;
+	int					tex_y;
 	unsigned int		color;
-	double				cameraX;
-	double				rayDirX;
-	double				rayDirY;
-	double				sideDistX;
-	double				sideDistY;
-	double				deltaDistX;
-	double				deltaDistY;
-	double				perpWallDist;
-	double				wallX;
+	double				camera_x;
+	double				ray_dir_x;
+	double				ray_dir_y;
+	double				side_dist_x;
+	double				side_dist_y;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	double				perp_wall_dist;
+	double				wall_x;
 	double				step;
-	double				texPos;
+	double				tex_pos;
 }	t_render;
 
 typedef struct s_cardinals
@@ -179,12 +179,14 @@ typedef struct s_cub3d
 	int				sprite_num;
 	int				current_sprite;
 	int				frame_count;
+	int				door_num;
 	t_xpm_img		egg;
 	t_trgb			ceiling_rgb;
 	t_trgb			floor_rgb;
 	t_img			img;
 	t_player		player;
-	t_xpm_img		*door;
+	t_xpm_img		door;
+	t_sprite		*doors;
 	t_cardinals		*wall;
 	t_sprite		*sprite;
 }	t_cub3d;
