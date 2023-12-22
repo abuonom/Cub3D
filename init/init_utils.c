@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 17:41:22 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:27:17 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,58 +47,4 @@ void	ft_sprite_position(t_cub3d *cub3d)
 		j = 0;
 		i++;
 	}
-}
-
-void	ft_doors_position(t_cub3d *cub3d)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (cub3d->map[i])
-	{
-		while (cub3d->map[i][j])
-		{
-			if (cub3d->map[i][j] == 'D')
-			{
-				cub3d->doors[k].x = j + 0.5;
-				cub3d->doors[k].y = i + 0.5;
-				cub3d->doors[k].distance = ft_distance(cub3d->player.posX,
-						cub3d->player.posY, cub3d->doors[k].x,
-						cub3d->doors[k].y);
-				k++;
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-}
-
-void	init_doors(t_cub3d *cub3d)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (cub3d->map[i])
-	{
-		while (cub3d->map[i][j])
-		{
-			if (cub3d->map[i][j] == 'D')
-				k++;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	cub3d->door_num = k;
-	cub3d->doors = ft_calloc(k + 1, sizeof(t_sprite));
-	ft_doors_position(cub3d);
 }

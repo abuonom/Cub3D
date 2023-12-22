@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 17:37:24 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:28:45 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void player_direction(t_cub3d *cub3d)
 	dir = cub3d->map[player_p('y', cub3d->map)][player_p('x', cub3d->map)];
 	if (dir == 'W')
 	{
-		cub3d->player.dirY = -1;
-		cub3d->player.planeX = 0.66;
+		cub3d->player.dirY = 1;
+		cub3d->player.planeX = -0.66;
 	}
 	if (dir == 'E')
 	{
-		cub3d->player.dirY = 1;
-		cub3d->player.planeX = -0.66;
+		cub3d->player.dirY = -1;
+		cub3d->player.planeX = 0.66;
 	}
 	if (dir == 'N')
 	{
@@ -115,7 +115,6 @@ void	init_cub3d(t_cub3d *cub3d)
 	cub3d->frame_count = 0;
 	init_player(cub3d);
 	init_sprite(cub3d);
-	init_doors(cub3d);
 	init_trgb(cub3d);
 	ft_load_texture(cub3d);
 }

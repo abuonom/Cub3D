@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 17:44:09 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 19:37:07 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	render_map(t_cub3d *cube)
 		zbuffer[x] = data.perp_wall_dist;
 		x++;
 	}
-	draw_door(cube, *zbuffer);
+	//draw_door(cube, *zbuffer);
 	sort_sprites(cube);
 	frame_sprite(cube);
 	draw_sprites(cube, *zbuffer);

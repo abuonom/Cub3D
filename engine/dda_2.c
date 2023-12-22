@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 17:33:45 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 19:02:43 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	perform_dda(t_render *data, t_cub3d *cub3d)
 		}
 		if (cub3d->map[(int)data->map_x][(int)data->map_y] == '1')
 			data->hit = 1;
+		if (cub3d->map[(int)data->map_x][(int)data->map_y] == 'D')
+			data->hit = 2;
 	}
 }
 

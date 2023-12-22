@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 17:33:56 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:58:48 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ void	wall_pos_ray_pos_on_wall(t_render *data, t_cub3d *cub3d)
 
 void	set_color(t_render *data, t_cub3d *cube, int shift)
 {
-	if (data->side == 1)
+	if (data->hit == 2)
+	{
+		data->color = *(unsigned int *)(cube->door.addr + shift);
+	}
+	else if (data->side == 1)
 	{
 		if (data->ray_dir_y > 0)
 			data->color = *(unsigned int *)

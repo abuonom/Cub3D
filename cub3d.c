@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:24:41 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 19:49:52 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	key_hook_pressed(int keycode, t_cub3d	*cub3d)
 		cub3d->player.cam_dir = 1;
 	if (keycode == ESC)
 		ft_exit("ADL PAGA", cub3d);
+	if(keycode == SPACE)
+	{
+		handle_door(cub3d);
+	}
 	return (0);
 }
 

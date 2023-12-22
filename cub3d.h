@@ -39,6 +39,8 @@
 # define RIGHT 65363
 # define SHIFT 65505
 # define SPACE 32
+# define SPRITE "./assets/sprite/Egg1_23.xpm"
+# define DOOR "./assets/porta.xpm"
 
 typedef struct s_img
 {
@@ -179,14 +181,12 @@ typedef struct s_cub3d
 	int				sprite_num;
 	int				current_sprite;
 	int				frame_count;
-	int				door_num;
 	t_xpm_img		egg;
 	t_trgb			ceiling_rgb;
 	t_trgb			floor_rgb;
 	t_img			img;
 	t_player		player;
 	t_xpm_img		door;
-	t_sprite		*doors;
 	t_cardinals		*wall;
 	t_sprite		*sprite;
 }	t_cub3d;
@@ -220,6 +220,7 @@ int				game_loop(t_cub3d *cube);
 void			perform_dda(t_render *data, t_cub3d *cub3d);
 void			draw_vertical_line(t_render *data, t_cub3d *cub3d, int x);
 void			render_map(t_cub3d *cube);
+void			handle_door(t_cub3d *cube);
 
 /*	CHECK_FILE_CUB	*/
 
