@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:46:22 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:32:59 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:26:13 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	left_move(t_cub3d *cub3d, double moveSpeed)
 	if (cub3d->player.mov_dirX == -1)
 	{
 		if (ft_strrchr("02", cub3d->map[(int)(cub3d->player.posX
-					- cub3d->player.dirY * moveSpeed)]
+					+ cub3d->player.dirY * moveSpeed)]
 			[(int)cub3d->player.posY]))
-			cub3d->player.posX -= cub3d->player.dirY * moveSpeed;
-		if (ft_strrchr("02", cub3d->map[(int)(cub3d->player.posX)]
-			[(int)(cub3d->player.posY
-				+ cub3d->player.dirX * moveSpeed)]))
-			cub3d->player.posY += (cub3d->player.dirX) * moveSpeed;
+			cub3d->player.posX += cub3d->player.dirY * moveSpeed;
+		if (ft_strrchr("02", cub3d->map[(int)cub3d->player.posX]
+				[(int)(cub3d->player.posY
+					- cub3d->player.dirX * moveSpeed)]))
+			cub3d->player.posY -= (cub3d->player.dirX) * moveSpeed;
 	}
 }
 
@@ -61,13 +61,13 @@ void	right_move(t_cub3d *cub3d, double moveSpeed)
 	if (cub3d->player.mov_dirX == 1)
 	{
 		if (ft_strrchr("02", cub3d->map[(int)(cub3d->player.posX
-					+ cub3d->player.dirY * moveSpeed)]
+					- cub3d->player.dirY * moveSpeed)]
 			[(int)cub3d->player.posY]))
-			cub3d->player.posX += cub3d->player.dirY * moveSpeed;
-		if (ft_strrchr("02", cub3d->map[(int)cub3d->player.posX]
-				[(int)(cub3d->player.posY
-					- cub3d->player.dirX * moveSpeed)]))
-			cub3d->player.posY -= (cub3d->player.dirX) * moveSpeed;
+			cub3d->player.posX -= cub3d->player.dirY * moveSpeed;
+		if (ft_strrchr("02", cub3d->map[(int)(cub3d->player.posX)]
+			[(int)(cub3d->player.posY
+				+ cub3d->player.dirX * moveSpeed)]))
+			cub3d->player.posY += (cub3d->player.dirX) * moveSpeed;
 	}
 }
 

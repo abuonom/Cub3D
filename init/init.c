@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/21 20:54:16 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:28:10 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,36 @@ void	init_sprite(t_cub3d *cub3d)
 	cub3d->sprite = ft_calloc(k + 1, sizeof(t_sprite));
 	ft_sprite_position(cub3d);
 }
-
+void player_direction(t_cub3d *cub3d)
+{
+	char	dir;
+	dir = cub3d->map[player_p('y', cub3d->map)][player_p('x', cub3d->map)];
+	if (dir == 'W')
+	{
+		cub3d->player.dirY = -1;
+		cub3d->player.planeX = 0.66;
+	}
+	if (dir == 'E')
+	{
+		cub3d->player.dirY = 1;
+		cub3d->player.planeX = -0.66;
+	}
+	if (dir == 'N')
+	{
+		cub3d->player.dirX = -1;
+		cub3d->player.planeY = -0.66;
+	}
+	if (dir == 'S')
+	{
+		cub3d->player.dirX = 1;
+		cub3d->player.planeY = 0.66;
+	}
+}
 void	init_player(t_cub3d *cub3d)
 {
 	cub3d->player.posX = player_p('y', cub3d->map) + 0.5;
 	cub3d->player.posY = player_p('x', cub3d->map) + 0.5;
-	cub3d->player.dirX = -1;
-	cub3d->player.dirY = 0;
-	cub3d->player.planeX = 0;
-	cub3d->player.planeY = 0.66;
+	player_direction(cub3d);
 	cub3d->player.mov_dirX = 0;
 	cub3d->player.mov_dirY = 0;
 	cub3d->player.cam_dir = 0;
