@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 21:47:02 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/25 00:04:33 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	key_hook_pressed(int keycode, t_cub3d	*cub3d)
 	if (keycode == D)
 		cub3d->player.mov_dirX = 1;
 	if (keycode == LEFT)
-		cub3d->player.cam_dir = -1;
-	if (keycode == RIGHT)
 		cub3d->player.cam_dir = 1;
+	if (keycode == RIGHT)
+		cub3d->player.cam_dir = -1;
 	if (keycode == ESC)
 		ft_exit("ADL PAGA", cub3d);
 	if(keycode == SPACE)
