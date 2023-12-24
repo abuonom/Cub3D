@@ -151,13 +151,7 @@ typedef struct s_tex {
 
 typedef struct s_cub3d
 {
-	int				w;
-	int				a;
-	int				s;
-	int				d;
 	int				fd;
-	int				t_right;
-	int				t_left;
 	int				ceiling_int;
 	int				floor_int;
 	int				fps;
@@ -214,6 +208,7 @@ void			init_trgb(t_cub3d *cub3d);
 void			init_cub3d(t_cub3d *cub3d);
 void			init_render_data(t_render *data, t_cub3d *cube, int x);
 int				player_p(char flag, char **map);
+void			init_cub3d_mlx(t_cub3d *cub3d);
 //hook functions
 int				cross_exit(int keycode, t_cub3d	*cub3d);
 int				game_loop(t_cub3d *cube);
