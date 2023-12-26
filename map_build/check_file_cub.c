@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 20:10:40 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 00:40:02 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 	}
 	close(cub3d->fd);
 	ft_check_parameters(cub3d);
-	if (cub3d->temp != NULL)
-		free(cub3d->temp);
+	free(cub3d->temp);
 }
 
 int	ft_is_parameter(char *str)

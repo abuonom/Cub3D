@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/25 00:12:32 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/25 00:25:24 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ void	init_player(t_cub3d *cub3d)
 
 void	init_cub3d(t_cub3d *cub3d)
 {
+	cub3d->NO = NULL;
+	cub3d->SO = NULL;
+	cub3d->WE = NULL;
+	cub3d->EA = NULL;
+	cub3d->floor = NULL;
+	cub3d->ceiling = NULL;
 	cub3d->wall = ft_calloc(1, sizeof(t_cardinals));
 	cub3d->oldTime = 0;
 	cub3d->time = 0;

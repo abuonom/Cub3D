@@ -88,7 +88,7 @@ typedef struct s_xpm_img
 
 typedef struct s_render
 {
-		double			map_x;
+	double				map_x;
 	double				map_y;
 	double				step_x;
 	double				step_y;
@@ -155,19 +155,8 @@ typedef struct s_cub3d
 	int				ceiling_int;
 	int				floor_int;
 	int				fps;
-	char			**map;
-	char			*NO;
-	char			*SO;
-	char			*WE;
-	char			*EA;
-	char			*floor;
-	char			*ceiling;
-	char			*path;
-	char			*temp;
 	float			wall_height[(int) WIN_WIDTH];
 	float			radius_dim[(int) WIN_WIDTH];
-	void			*mlx;
-	void			*win;
 	double			time;
 	double			oldTime;
 	double			frameTime;
@@ -175,13 +164,24 @@ typedef struct s_cub3d
 	int				sprite_num;
 	int				current_sprite;
 	int				frame_count;
-	t_xpm_img		egg;
+	t_xpm_img		egg; //libera
 	t_trgb			ceiling_rgb;
 	t_trgb			floor_rgb;
-	t_img			img;
+	t_img			img; //libera
 	t_player		player;
-	t_xpm_img		door;
-	t_cardinals		*wall;
+	t_xpm_img		door; //libera
+	char			**map; //libera
+	char			*NO; //libera
+	char			*SO; //libera
+	char			*WE; //libera
+	char			*EA; //libera
+	char			*floor; //libera
+	char			*ceiling; //libera
+	char			*path; //libera
+	char			*temp; //libera
+	void			*mlx; //libera
+	void			*win; //libera
+	t_cardinals		*wall; //libera
 	t_sprite		*sprite;
 }	t_cub3d;
 
