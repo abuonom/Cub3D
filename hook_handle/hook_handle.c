@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:53:08 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 19:51:52 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:09:34 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	handle_door(t_cub3d *cube)
 
 int	cross_exit(int keycode, t_cub3d	*cub3d)
 {
-	ft_exit("ADL PAGA", cub3d);
+	ft_exit("Aurelio ha pagato", cub3d);
 	return (0);
 }

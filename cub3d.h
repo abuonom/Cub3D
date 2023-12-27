@@ -164,24 +164,23 @@ typedef struct s_cub3d
 	int				sprite_num;
 	int				current_sprite;
 	int				frame_count;
-	t_xpm_img		egg; //libera
+	t_xpm_img		egg;
 	t_trgb			ceiling_rgb;
 	t_trgb			floor_rgb;
-	t_img			img; //libera
+	t_img			img;
 	t_player		player;
-	t_xpm_img		door; //libera
-	char			**map; //libera
-	char			*NO; //libera
-	char			*SO; //libera
-	char			*WE; //libera
-	char			*EA; //libera
-	char			*floor; //libera
-	char			*ceiling; //libera
-	char			*path; //libera
-	char			*temp; //libera
-	void			*mlx; //libera
-	void			*win; //libera
-	t_cardinals		*wall; //libera
+	t_xpm_img		door;
+	char			**map;
+	char			*NO;
+	char			*SO;
+	char			*WE;
+	char			*EA;
+	char			*floor;
+	char			*ceiling;
+	char			*temp;
+	void			*mlx;
+	void			*win;
+	t_cardinals		*wall;
 	t_sprite		*sprite;
 }	t_cub3d;
 

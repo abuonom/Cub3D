@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/27 00:42:52 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:20:49 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	destroy_mlx(t_cub3d *cub3d)
 
 void	free_cub3d_1(t_cub3d *cub3d)
 {
+		write(1, "free cub3d\n", 11);
 		destroy_mlx(cub3d);
 		free_map(cub3d->map);
 		free(cub3d->wall);
@@ -51,16 +52,14 @@ void	free_cub3d_1(t_cub3d *cub3d)
 		free(cub3d->EA);
 		free(cub3d->floor);
 		free(cub3d->ceiling);
-		free(cub3d->path);
-		free(cub3d->temp);
 		free(cub3d->sprite);
+		free(cub3d->temp);
 		free(cub3d->mlx);
 }
 
 void	ft_exit(char *str, t_cub3d *cub3d)
 {
 	free_cub3d_1(cub3d);
-	free(cub3d);
-	printf("Error: %s\n", str);
+	printf("Chiuso per: %s\n", str);
 	exit(1);
 }

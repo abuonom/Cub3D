@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/25 00:13:31 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:09:22 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,4 @@ int	main(int argc, char **argv)
 	check_and_init_map(argv[1], &cub3d);
 	init_cub3d_mlx(&cub3d);
 	game(&cub3d);
-	ft_exit("RIUSCITO TUTTO", &cub3d);
 }
