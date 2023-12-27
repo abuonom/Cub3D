@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/27 14:09:22 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:55:49 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,19 @@ int	main(int argc, char **argv)
 	t_cub3d	cub3d;
 
 	if (argc > 2 || argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
-		ft_exit("Wrong arguments", &cub3d);
-	init_cub3d(&cub3d);
+	{
+		printf("Wrong arguments");
+		exit(1);
+	}
+	if (ft_check_cub(argv[1]))
+	{
+		printf("Wrong file extension");
+		exit(1);
+	}
 	ft_check_file_cub(argc, argv, &cub3d);
-	check_and_init_map(argv[1], &cub3d);
+	init_cub3d(&cub3d);
 	init_cub3d_mlx(&cub3d);
+	check_and_init_map(argv[1], &cub3d);
+	init_cub3d_img(&cub3d);
 	game(&cub3d);
 }

@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/27 00:40:02 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:39:57 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	ft_check_cub(char *path)
 	int	i;
 
 	i = ft_strlen(path);
-	printf("stampa: %s\n", path);
 	if (path[i - 1] != 'b' || path[i - 2] != 'u'
 		|| path[i - 3] != 'c' || path[i - 4] != '.')
 		return (1);

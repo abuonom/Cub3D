@@ -249,4 +249,6 @@ double			ft_distance(double x1, double y1, double x2, double y2);
 void			ft_sprite_position(t_cub3d *cub3d);
 void			ft_sleep(u_int64_t time);
 u_int64_t		get_time(void);
+
+void	init_cub3d_img(t_cub3d *cub3d);
 #endif
