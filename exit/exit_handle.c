@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/27 16:51:51 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:09:52 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,12 @@ void	destroy_mlx(t_cub3d *cub3d)
 		mlx_destroy_image(cub3d->mlx, cub3d->egg.img);
 	if (cub3d->door.img != NULL)
 		mlx_destroy_image(cub3d->mlx, cub3d->door.img);
-}
-
-void free_cub3d_1(t_cub3d *cub3d) {
-	destroy_mlx(cub3d);
-	if (cub3d->map != NULL)
-		free_map(cub3d->map);
 	if (cub3d->mlx != NULL)
 		free(cub3d->mlx);
+}
+
+void free_cub3d_1(t_cub3d *cub3d)
+{
 	if (cub3d->wall != NULL)
 		free(cub3d->wall);
 	if (cub3d->NO != NULL)
@@ -68,15 +66,22 @@ void free_cub3d_1(t_cub3d *cub3d) {
 		free(cub3d->floor);
 	if (cub3d->ceiling != NULL)
 		free(cub3d->ceiling);
-	if (cub3d->sprite != NULL)
-		free(cub3d->sprite);
-	if (cub3d->temp != NULL)
-		free(cub3d->temp);
 }
 
 
 void	ft_exit(char *str, t_cub3d *cub3d)
 {
+	free_cub3d_1(cub3d);
+	printf("Chiuso per: %s\n", str);
+	exit(1);
+}
+
+void	ft_exit_2(char *str, t_cub3d *cub3d)
+{
+	if (cub3d->map != NULL)
+		free_map(cub3d->map);
+
+	destroy_mlx(cub3d);
 	free_cub3d_1(cub3d);
 	printf("Chiuso per: %s\n", str);
 	exit(1);

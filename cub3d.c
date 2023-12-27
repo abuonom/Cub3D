@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/27 16:55:49 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:06:51 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int	main(int argc, char **argv)
 		printf("Wrong file extension");
 		exit(1);
 	}
-	ft_check_file_cub(argc, argv, &cub3d);
 	init_cub3d(&cub3d);
+	ft_check_file_cub(argc, argv, &cub3d);
 	init_cub3d_mlx(&cub3d);
 	check_and_init_map(argv[1], &cub3d);
 	init_cub3d_img(&cub3d);
