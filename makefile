@@ -19,6 +19,9 @@ SRC = $(wildcard *.c) \
 		$(wildcard init/*.c) \
 		$(wildcard hook_handle/*.c) \
 		$(wildcard engine/*.c) \
+		$(wildcard loading/*.c) \
+		$(wildcard move_rotate/*.c) \
+		$(wildcard minimap/*.c) \
 
 OBJS = $(SRC:.c=.o)
 

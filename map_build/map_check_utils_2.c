@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:18:29 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/04 16:48:01 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:33:52 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,36 @@ void	resize_map(char **map)
 		}
 		row++;
 	}
+}
+
+void	ft_error_map_not_valid(t_cub3d *cub3d)
+{
+	write(2, "Error\nMap not valid\n", 20);
+	ft_free_array(cub3d->map);
+	exit(1);
+}
+
+int	ft_check_characters(char **array)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (array[i])
+	{
+		j = 0;
+		while (array[i][j])
+		{
+			if (array[i][j] != 'N' && array[i][j] != 'S' && array[i][j] != 'W'
+			&& array[i][j] != 'E' && array[i][j] != '0' && array[i][j] != '1'
+			&& array[i][j] != '2' && array[i][j] != 'D' && array[i][j] != ' '
+			&& array[i][j] != '\t')
+			{
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

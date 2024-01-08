@@ -1,7 +1,7 @@
-NO ./srcs/sprites/test/purplestone.xpm
-SO ./srcs/sprites/test/redbrick.xpm
-WE ./srcs/sprites/test/mossy.xpm
-EA ./srcs/sprites/test/bluestone.xpm
+NO ./assets/arbitroooooooo.xpm
+SO ./assets/er_pupone.xpm
+WE ./assets/spallettone.xpm
+EA ./assets/idolo.xpm
 
 F 220,100,0
 C 225,30,0
@@ -9,10 +9,10 @@ C 225,30,0
 1111111111
 1000100001
 1000100001
-1101100001
-1N00100001
-1011100001
-1000111101
+1100000001
+1000000001
+1000000001
+1000N00001
 1000000001
 1000000001
 1111111111

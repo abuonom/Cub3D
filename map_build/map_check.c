@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/04 16:46:07 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:33:45 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	check_and_init_map(char *path, t_cub3d *cub3d)
 	str_map = pick_map(path, cub3d);
 	cub3d->map = ft_split(str_map, '\n');
 	free(str_map);
+	if (ft_check_characters(cub3d->map) == 1)
+		ft_error_map_not_valid(cub3d);
 	if (cub3d->map == NULL)
 		ft_exit("Error\nMap not found", cub3d);
 	tab_with_spaces(cub3d->map);
@@ -135,8 +137,10 @@ void	check_and_init_map(char *path, t_cub3d *cub3d)
 	copy = copy_map(cub3d->map);
 	if (flood_fill(copy, player_p('x', cub3d->map),
 			player_p('y', cub3d->map)) != 0)
-		ft_exit("Mappa non valida", cub3d);
+		ft_exit("Map not valid", cub3d);
 	free_map(copy);
 	resize_map(cub3d->map);
 	spaces_with_zero(cub3d->map);
+	cub3d->map_with_player = ft_copy_array(cub3d->map,
+			ft_get_size_array(cub3d->map));
 }

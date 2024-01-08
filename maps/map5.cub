@@ -1,7 +1,7 @@
-NO ./srcs/sprites/test/purplestone.xpm
-SO ./srcs/sprites/test/redbrick.xpm
-WE ./srcs/sprites/test/mossy.xpm
-EA ./srcs/sprites/test/bluestone.xpm
+NO ./assets/arbitroooooooo.xpm
+SO ./assets/er_pupone.xpm
+WE ./assets/spallettone.xpm
+EA ./assets/idolo.xpm
 F 220,100,0
 C 225,30,0
 1111111111111111111111111

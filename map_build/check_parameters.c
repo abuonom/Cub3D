@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:47:17 by misidori          #+#    #+#             */
-/*   Updated: 2023/12/06 14:08:18 by misidori         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:32:51 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	ft_check_parameters(t_cub3d *cub3d)
 {
 	ft_check_file_xpm(cub3d);
-	ft_remove_char_in_str(cub3d->floor, '\n');
-	ft_remove_char_in_str(cub3d->ceiling, '\n');
 	if (ft_isdigit_str(cub3d->ceiling) == 1
 		|| ft_isdigit_str(cub3d->floor) == 1)
 	{
@@ -58,17 +56,16 @@ void	ft_check_single_file_type(char *file_image)
 	int		file_descriptor;
 	int		bytes_read;
 
-	ft_remove_char_in_str(file_image, '\n');
 	file_descriptor = open(file_image, O_RDONLY);
 	if (file_descriptor == -1)
 	{
-		printf("Error: %s\n", strerror(errno));
+		printf("Error with image file: %s\n", strerror(errno));
 		exit(1);
 	}
 	bytes_read = read(file_descriptor, buffer, BUFFER_SIZE);
 	if (bytes_read < 0)
 	{
-		printf("Error: %s\n", strerror(errno));
+		printf("Error with image file: %s\n", strerror(errno));
 		close(file_descriptor);
 		exit(1);
 	}
@@ -76,7 +73,7 @@ void	ft_check_single_file_type(char *file_image)
 	ft_check_magic_numbers(bytes_read, buffer);
 	if (close(file_descriptor) < 0)
 	{
-		printf("Error: %s\n", strerror(errno));
+		printf("Error with image file: %s\n", strerror(errno));
 		exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:18:28 by mlongo            #+#    #+#             */
-/*   Updated: 2023/12/06 15:01:05 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:09:06 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif
@@ -94,5 +95,9 @@ int		ft_isdigit_str(char *str);
 void	ft_remove_char_in_str(char *str, char c);
 void	ft_free_array(char **array);
 int		ft_cmp_len_and_str(char *str1, char *str2, int len);
+void	ft_print_array(char **array_strings);
+int		ft_get_size_array(char **array);
+char	**ft_copy_array(char **original_array, int size_array);
+int		ft_count_char_array(char const **array, char c);
 
 #endif

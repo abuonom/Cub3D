@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:32:58 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/02 03:45:38 by abuonomo         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:11:10 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	add_parameter(char *tmp, t_cub3d *cub3d)
 {
 	if (tmp[0] == 'N' && tmp[1] == 'O' && cub3d->NO == NULL)
-		cub3d->NO = ft_strtrim(ft_strdup(tmp + 2), " ");
+		cub3d->NO = ft_strtrim(ft_strtrim(ft_strdup(tmp + 2), " "), "\n");
 	if (tmp[0] == 'S' && tmp[1] == 'O' && cub3d->SO == NULL)
-		cub3d->SO = ft_strtrim(ft_strdup(tmp + 2), " ");
+		cub3d->SO = ft_strtrim(ft_strtrim(ft_strdup(tmp + 2), " "), "\n");
 	if (tmp[0] == 'W' && tmp[1] == 'E' && cub3d->WE == NULL)
-		cub3d->WE = ft_strtrim(ft_strdup(tmp + 2), " ");
+		cub3d->WE = ft_strtrim(ft_strtrim(ft_strdup(tmp + 2), " "), "\n");
 	if (tmp[0] == 'E' && tmp[1] == 'A' && cub3d->EA == NULL)
-		cub3d->EA = ft_strtrim(ft_strdup(tmp + 2), " ");
+		cub3d->EA = ft_strtrim(ft_strtrim(ft_strdup(tmp + 2), " "), "\n");
 	if (tmp[0] == 'F' && tmp[1] == ' ' && cub3d->floor == NULL)
-		cub3d->floor = ft_strtrim(ft_strdup(tmp + 2), " ");
+		cub3d->floor = ft_strtrim(ft_strtrim(ft_strdup(tmp + 2), " "), "\n");
 	if (tmp[0] == 'C' && tmp[1] == ' ' && cub3d->ceiling == NULL)
-		cub3d->ceiling = ft_strtrim(ft_strdup(tmp + 2), " ");
+		cub3d->ceiling = ft_strtrim(ft_strtrim(ft_strdup(tmp + 2), " "), "\n");
 }
 
 int	is_param_not_present(char *tmp, t_cub3d *cub3d)

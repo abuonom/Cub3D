@@ -1,7 +1,7 @@
-NO ./srcs/sprites/test/WallN.xpm
-SO ./srcs/sprites/test/WallS.xpm
-WE ./srcs/sprites/test/WallE.xpm
-EA ./srcs/sprites/test/WallE.xpm
+NO ./assets/arbitroooooooo.xpm
+SO ./assets/er_pupone.xpm
+WE ./assets/spallettone.xpm
+EA ./assets/idolo.xpm
 
 F 50,50,50
 C 219,36,158
