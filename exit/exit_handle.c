@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 17:37:16 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:25:59 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	destroy_mlx(t_cub3d *cub3d)
 
 void	free_cub3d_1(t_cub3d *cub3d)
 {
-	write(1, "free cub3d\n", 11);
-//		destroy_mlx(cub3d);
+//	destroy_mlx(cub3d);
 	if (cub3d->map)
 		free_map(cub3d->map);
 	if (cub3d->wall != NULL)
@@ -65,14 +64,14 @@ void	free_cub3d_1(t_cub3d *cub3d)
 	if (cub3d->temp != NULL)
 		free(cub3d->temp);
 	if (cub3d->mlx != NULL)
-		free(cub3d->mlx != NULL);
+		free(cub3d->mlx);
 	if (cub3d->map_with_player != NULL)
 		ft_free_array(cub3d->map_with_player);
 }
 
 void	ft_exit(char *str, t_cub3d *cub3d)
 {
-	//free_cub3d_1(cub3d);
+//	free_cub3d_1(cub3d);
 	printf("Chiuso per: %s\n", str);
 	exit(1);
 }

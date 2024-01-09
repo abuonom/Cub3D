@@ -26,10 +26,12 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdint.h>
+# include <mlx.h>
 
 # define WIN_WIDTH 1900
 # define WIN_HEIGHT 1500
 # define RAD 0.0174533
+/*	KEY CODES FOR LINUX
 # define ESC 65307
 # define W 119
 # define A 97
@@ -39,8 +41,33 @@
 # define RIGHT 65363
 # define SHIFT 65505
 # define SPACE 32
+*/
+/*	KEY CODES FOR MAC	*/
+# define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define LEFT 123
+# define RIGHT 124
+# define SHIFT 57
+# define SPACE 49
+// # define SPRITE "./assets/sprite/Egg1_23.xpm"
+// # define DOOR "./assets/porta.xpm"
 # define SPRITE "./assets/sprite/Egg1_23.xpm"
-# define DOOR "./assets/porta.xpm"
+# define DOOR "./assets/wolf/door.xpm"
+/*	WOLF
+NO ./assets/wolf/bluestone.xpm
+SO ./assets/wolf/colorstone.xpm
+WE ./assets/wolf/mossy.xpm
+EA ./assets/wolf/redbrick.xpm
+
+	FORZA NAPOLI
+NO ./assets/arbitroooooooo.xpm
+SO ./assets/er_pupone.xpm
+WE ./assets/spallettone.xpm
+EA ./assets/idolo.xpm
+*/
 
 typedef struct s_img
 {
@@ -301,5 +328,7 @@ void			ft_put_wall_map_img(t_cub3d *cube, int i, int j);
 void			ft_put_floor_map_img(t_cub3d *cube, int i, int j);
 void			ft_put_door_vertical_close_img(t_cub3d *cube, int i, int j);
 void			ft_put_door_horizontal_close_img(t_cub3d *cube, int i, int j);
+
+void	init_sprite(t_cub3d *cub3d);
 
 #endif

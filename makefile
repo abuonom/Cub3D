@@ -25,17 +25,17 @@ SRC = $(wildcard *.c) \
 
 OBJS = $(SRC:.c=.o)
 
-FLAGS :=-g
+FLAGS :=-g -fsanitize=address
 
 LIBFT_PATH = ./libft
 
-MINILIBX_PATH = ./mlx_linux
+#MINILIBX_PATH = ./mlx_linux
 
 LIBFT = ${LIBFT_PATH}/libft.a
 
-MINILIBX =${MINILIBX_PATH}/libmlx.a
+#MINILIBX =${MINILIBX_PATH}/libmlx.a
 
-MINILIBX_LINUX =${MINILIBX_PATH}/libmlx_Linux.a
+#MINILIBX_LINUX =${MINILIBX_PATH}/libmlx_Linux.a
 
 #COLORS
 RED = \033[1;31m
@@ -49,19 +49,21 @@ DEFAULT = \033[0m
 all: $(NAME)
 
 %.o : %.c
-	@cc $(FLAGS) -I/usr/includesude -Imlx_linux -c $< -o $@
+	@cc $(FLAGS) -I/usr/includesude -c $< -o $@
+# @cc $(FLAGS) -I/usr/includesude -Imlx_linux-c $< -o $@ apparteneva alla riga sopra
 	@echo "$(GREEN)$@ created!$(DEFAULT)"
 
 $(NAME): $(OBJS)
 	@make -C libft
 	@make bonus -C libft
-	@make -C mlx_linux
-	@cc $(FLAGS) $(OBJS) $(LIBFT) ${MINILIBX} ${MINILIBX_LINUX} -Lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -D LIN=1 -o $(NAME)
+#	@make -C mlx_linux
+	@cc $(FLAGS) $(OBJS) $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+# @cc $(FLAGS) $(OBJS) $(LIBFT) ${MINILIBX} ${MINILIBX_LINUX}  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -D LIN=1 -o $(NAME)
 	@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
 	@make clean -C libft
-	@make clean -C mlx_linux
+#	@make clean -C mlx_linux
 	@rm -f $(OBJS)
 	@echo "$(YELLOW)object files deleted!$(DEFAULT)"
 

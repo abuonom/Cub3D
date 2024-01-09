@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 19:33:45 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:44:39 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ static int	flood_fill(char **map, int x, int y)
 		else
 		{
 			map[y][x] = '$';
-			if (map[y][x + 1] != '1')
+			if (map[y][x + 1] != '1' && map[y][x + 1] != 'D')
 				res = flood_fill(map, x + 1, y);
-			if (map[y][x - 1] != '1' && res != 1)
+			if (map[y][x - 1] != '1' && map[y][x - 1] != 'D' && res != 1)
 				res = flood_fill(map, x - 1, y);
-			if (map[y + 1][x] != '1' && res != 1)
+			if (map[y + 1][x] != '1' && map[y + 1][x] != 'D' && res != 1)
 				res = flood_fill(map, x, y + 1);
-			if (map[y - 1][x] != '1' && res != 1)
+			if (map[y - 1][x] != '1' && map[y - 1][x] != 'D' && res != 1)
 				res = flood_fill(map, x, y - 1);
 		}
 	}
@@ -135,8 +135,10 @@ void	check_and_init_map(char *path, t_cub3d *cub3d)
 	check_trash(cub3d->map, cub3d);
 	check_duplicate(cub3d->map, cub3d);
 	copy = copy_map(cub3d->map);
-	if (flood_fill(copy, player_p('x', cub3d->map),
-			player_p('y', cub3d->map)) != 0)
+	int res_fill_flood = flood_fill(copy, player_p('x', cub3d->map),
+			player_p('y', cub3d->map));
+	printf("res_fill_flood: %d\n", res_fill_flood);
+	if (res_fill_flood != 0)
 		ft_exit("Map not valid", cub3d);
 	free_map(copy);
 	resize_map(cub3d->map);

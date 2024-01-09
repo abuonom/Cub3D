@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:18:29 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 19:33:52 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/08 20:58:00 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	resize_map(char **map)
 
 void	ft_error_map_not_valid(t_cub3d *cub3d)
 {
-	write(2, "Error\nMap not valid\n", 20);
+	write(2, "Error\nMap not valid\n", 22);
 	ft_free_array(cub3d->map);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 19:34:59 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:08:33 by misidori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	mouse_move_hook(int x, int y, t_cub3d	*cub3d)
 	double	new_rotation_angle;
 
 	(void)y;
-	mlx_mouse_hide(cub3d->mlx, cub3d->win);
+//	mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	normalized_x = (2.0f * x) / WIN_WIDTH - 1.0f;
 	max_rotation_angle = 180.0f;
 	rotation_angle = max_rotation_angle * normalized_x;
@@ -83,7 +83,7 @@ void	game(t_cub3d	*cub3d)
 	mlx_hook(cub3d->win, 3, 1L << 1, key_hook_released, cub3d);
 	mlx_hook(cub3d->win, 6, 1L << 6, mouse_move_hook, cub3d);
 	mlx_loop_hook(cub3d->mlx, game_loop, cub3d);
-	mlx_mouse_hide(cub3d->mlx, cub3d->win);
+//	mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	mlx_loop(cub3d->mlx);
 }
 
