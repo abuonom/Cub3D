@@ -28,10 +28,10 @@
 # include <stdint.h>
 # include <mlx.h>
 
-# define WIN_WIDTH 1900
-# define WIN_HEIGHT 1500
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 500
 # define RAD 0.0174533
-/*	KEY CODES FOR LINUX
+//KEY CODES FOR LINUX
 # define ESC 65307
 # define W 119
 # define A 97
@@ -41,8 +41,7 @@
 # define RIGHT 65363
 # define SHIFT 65505
 # define SPACE 32
-*/
-/*	KEY CODES FOR MAC	*/
+/*	KEY CODES FOR MAC
 # define ESC 53
 # define W 13
 # define A 0
@@ -52,6 +51,8 @@
 # define RIGHT 124
 # define SHIFT 57
 # define SPACE 49
+*/
+
 // # define SPRITE "./assets/sprite/Egg1_23.xpm"
 // # define DOOR "./assets/porta.xpm"
 # define SPRITE "./assets/sprite/Egg1_23.xpm"

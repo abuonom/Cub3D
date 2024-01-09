@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:27:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 16:43:44 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:24:14 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	check_first_last_row(char **map, t_cub3d *cub3d)
 	while (map[0][i] != '\0')
 	{
 		if (map[0][i] != '1' && (map[0][i] != ' '))
-			ft_exit("Esco al primo", cub3d);
+			ft_exit("Mappa non valida", cub3d);
 		i++;
 	}
 	i = 0;
@@ -121,7 +121,7 @@ void	check_first_last_row(char **map, t_cub3d *cub3d)
 	while (map[j - 1][i] != '\0')
 	{
 		if (map[j - 1][i] != '1' && (map[j - 1][i] != ' '))
-			ft_exit("Esco al secondo", cub3d);
+			ft_exit("Mappa non valida", cub3d);
 		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_cub.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/27 15:23:31 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:27:51 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 		cub3d->temp = get_next_line(cub3d->fd);
 	}
 	close(cub3d->fd);
+	ft_param_full(cub3d->temp, cub3d);
 	ft_check_parameters(cub3d);
 	free(cub3d->temp);
 }

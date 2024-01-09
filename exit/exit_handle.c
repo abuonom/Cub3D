@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_handle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:31:59 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/09 14:25:59 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:32:06 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,39 @@ void	destroy_mlx(t_cub3d *cub3d)
 	mlx_destroy_image(cub3d->mlx, cub3d->door.img);
 }
 
-void	free_cub3d_1(t_cub3d *cub3d)
+void	free_cub3d_mlx(t_cub3d *cub3d)
 {
-//	destroy_mlx(cub3d);
+	destroy_mlx(cub3d);
+	write(1, "Closed: Cub3D\n", 14);
+	if (cub3d->map)
+		free_map(cub3d->map);
+	write(1, "Closed: Map\n", 12);
+	if (cub3d->wall != NULL)
+		free(cub3d->wall);
+	if (cub3d->NO != NULL)
+		free(cub3d->NO);
+	if (cub3d->SO != NULL)
+		free(cub3d->SO);
+	if (cub3d->WE != NULL)
+		free(cub3d->WE);
+	if (cub3d->EA != NULL)
+		free(cub3d->EA);
+	if (cub3d->floor != NULL)
+		free(cub3d->floor);
+	if (cub3d->ceiling != NULL)
+		free(cub3d->ceiling);
+	if (cub3d->sprite != NULL)
+		free(cub3d->sprite);
+	if (cub3d->temp != NULL)
+		free(cub3d->temp);
+	if (cub3d->mlx != NULL)
+		free(cub3d->mlx);
+	if (cub3d->map_with_player != NULL)
+		ft_free_array(cub3d->map_with_player);
+}
+
+void	free_cub3d(t_cub3d *cub3d)
+{
 	if (cub3d->map)
 		free_map(cub3d->map);
 	if (cub3d->wall != NULL)
@@ -71,7 +101,7 @@ void	free_cub3d_1(t_cub3d *cub3d)
 
 void	ft_exit(char *str, t_cub3d *cub3d)
 {
-//	free_cub3d_1(cub3d);
-	printf("Chiuso per: %s\n", str);
+	free_cub3d(cub3d);
+	printf("Closed: %s\n", str);
 	exit(1);
 }

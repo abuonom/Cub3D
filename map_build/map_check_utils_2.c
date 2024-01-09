@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:18:29 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/08 20:58:00 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:32:42 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	resize_map(char **map)
 
 void	ft_error_map_not_valid(t_cub3d *cub3d)
 {
-	write(2, "Error\nMap not valid\n", 22);
+	write(2, "Closed error: Map not valid\n", 29);
 	ft_free_array(cub3d->map);
 	exit(1);
 }

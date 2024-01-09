@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 18:05:14 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:31:57 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ void	init_cub3d(t_cub3d *cub3d)
 	cub3d->EA = NULL;
 	cub3d->floor = NULL;
 	cub3d->ceiling = NULL;
+	cub3d->sprite = NULL;
+	cub3d->map = NULL;
+	cub3d->map_with_player = NULL;
 	cub3d->wall = ft_calloc(1, sizeof(t_cardinals));
 	cub3d->oldTime = 0;
 	cub3d->time = 0;
