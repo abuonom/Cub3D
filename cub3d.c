@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/08 19:08:33 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:13:55 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,12 @@ void	game(t_cub3d	*cub3d)
 int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d;
-
 	if (argc > 2 || argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
-		ft_exit("Wrong arguments", &cub3d);
+	{
+		write(2,"Closed: Wrong arguments",23);
+		exit(1);
+	}
+	ft_check_extension(argc,argv,&cub3d);
 	init_cub3d(&cub3d);
 	ft_check_file_cub(argc, argv, &cub3d);
 	check_and_init_map(argv[1], &cub3d);

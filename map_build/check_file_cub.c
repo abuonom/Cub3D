@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:27:51 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:15:21 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	ft_check_cub(char *path)
 	int	i;
 
 	i = ft_strlen(path);
-	printf("stampa: %s\n", path);
 	if (path[i - 1] != 'b' || path[i - 2] != 'u'
 		|| path[i - 3] != 'c' || path[i - 4] != '.')
 		return (1);
@@ -91,8 +90,9 @@ int	ft_param_full(char *tmp, t_cub3d *cub3d)
 
 void	ft_check_extension(int argc, char **argv, t_cub3d *cub3d)
 {
-	if (argc > 2 || argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
-		ft_exit("Wrong arguments", cub3d);
 	if (ft_check_cub(argv[1]))
-		ft_exit("Wrong file extension", cub3d);
+	{
+		write(2,"Closed: Wrong extension",23);
+		exit(1);
+	}
 }

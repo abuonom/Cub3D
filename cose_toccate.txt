@@ -1,8 +1,0 @@
-void	handle_door(t_cub3d *cube)
-void	update_movement(t_cub3d *cub3d)
-void	ft_load_texture(t_cub3d *cub3d)
-int		game_loop(t_cub3d *cube)
-
-
-minimap.c
-cub3d.h
