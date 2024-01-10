@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/10 12:39:10 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:32:10 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,10 @@ void	ft_sprite_position(t_cub3d *cub3d)
 		j = 0;
 		i++;
 	}
+}
+
+void	ft_exit_error_open_file(void)
+{
+	write(2, "Closed: Error opening file\n", 27);
+	exit(1);
 }

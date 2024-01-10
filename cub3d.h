@@ -252,7 +252,7 @@ void			resize_map(char **map);
 void			ft_error_map_not_valid(t_cub3d *cub3d);
 int				ft_check_characters(char **array);
 void			init_trgb(t_cub3d *cub3d);
-void			init_cub3d(t_cub3d *cub3d);
+void			init_cub3d(t_cub3d *cub3d, char **argv);
 void			init_render_data(t_render *data, t_cub3d *cube, int x);
 int				player_p(char flag, char **map);
 void			init_cub3d_mlx(t_cub3d *cub3d);
@@ -262,7 +262,7 @@ void			perform_dda(t_render *data, t_cub3d *cub3d);
 void			draw_vertical_line(t_render *data, t_cub3d *cub3d, int x);
 void			render_map(t_cub3d *cube);
 void			handle_door(t_cub3d *cube);
-void			ft_check_file_cub(char **argv, t_cub3d *cub3d);
+void			ft_check_file_cub(t_cub3d *cub3d);
 void			ft_check_extension(char **argv);
 int				ft_param_full(t_cub3d *cub3d);
 int				ft_is_parameter(char *str);
@@ -304,5 +304,6 @@ void			ft_put_floor_map_img(t_cub3d *cube, int i, int j);
 void			ft_put_door_vertical_close_img(t_cub3d *cube, int i, int j);
 void			ft_put_door_horizontal_close_img(t_cub3d *cube, int i, int j);
 void			init_sprite(t_cub3d *cub3d);
+void			ft_exit_error_open_file(void);
 
 #endif

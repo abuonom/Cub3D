@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/10 12:46:46 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:31:57 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,14 @@ void	init_player(t_cub3d *cub3d)
 	cub3d->map[player_p('y', cub3d->map)][player_p('x', cub3d->map)] = '0';
 }
 
-void	init_cub3d(t_cub3d *cub3d)
+void	init_cub3d(t_cub3d *cub3d, char **argv)
 {
+	cub3d->fd = open(argv[1], O_RDONLY);
+	if (cub3d->fd < 0)
+		ft_exit_error_open_file();
+	cub3d->temp = get_next_line(cub3d->fd);
+	if (cub3d->temp == NULL)
+		ft_exit_error_open_file();
 	cub3d->no = NULL;
 	cub3d->so = NULL;
 	cub3d->we = NULL;

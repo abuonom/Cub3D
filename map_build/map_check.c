@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:41:27 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/10 12:33:33 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:37:00 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,15 @@ void	check_and_init_map(char *path, t_cub3d *cub3d)
 	if (cub3d->map == NULL)
 		ft_exit("Error\nMap not found", cub3d);
 	tab_with_spaces(cub3d->map);
-	check_first_last_row(cub3d->map, cub3d);
 	check_trash(cub3d->map, cub3d);
 	check_duplicate(cub3d->map, cub3d);
 	copy = copy_map(cub3d->map);
 	if (flood_fill(copy, player_p('x', cub3d->map),
 			player_p('y', cub3d->map)) != 0)
-		ft_exit("Map not valid", cub3d);
+	{
+		ft_free_array((cub3d->map));
+		ft_exit_error_open_file();
+	}
 	free_map(copy);
 	resize_map(cub3d->map);
 	spaces_with_zero(cub3d->map);

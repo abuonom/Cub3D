@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:18:29 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/10 10:44:44 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:19:00 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	resize_map(char **map)
 
 void	ft_error_map_not_valid(t_cub3d *cub3d)
 {
-	write(2, "Closed error: Map not valid\n", 29);
+	write(2, "Closed: Map not valid\n", 22);
 	ft_free_array(cub3d->map);
 	exit(1);
 }

@@ -6,20 +6,14 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/10 12:46:46 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:22:58 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_check_file_cub(char **argv, t_cub3d *cub3d)
+void	ft_check_file_cub(t_cub3d *cub3d)
 {
-	cub3d->fd = open(argv[1], O_RDONLY);
-	if (cub3d->fd < 0)
-		ft_exit("Error opening file", cub3d);
-	cub3d->temp = get_next_line(cub3d->fd);
-	if (cub3d->temp == NULL)
-		ft_exit("Error opening file", cub3d);
 	while (cub3d->temp != NULL)
 	{
 		if (ft_is_parameter(cub3d->temp))
@@ -27,7 +21,11 @@ void	ft_check_file_cub(char **argv, t_cub3d *cub3d)
 			if (is_param_not_present(cub3d->temp, cub3d))
 				add_parameter(cub3d->temp, cub3d);
 			else
-				ft_exit("Duplicated parameter", cub3d);
+			{
+				write(2, "Closed: Duplicated parameter\n", 29);
+				free(cub3d->temp);
+				exit(1);
+			}
 		}
 		else if (cub3d->temp[0] != '\n'
 			&& ft_param_full(cub3d) < 6)
@@ -84,7 +82,11 @@ int	ft_param_full(t_cub3d *cub3d)
 	if (cub3d->ceiling != NULL)
 		i++;
 	if (i < 6)
-		ft_exit("Wrong parameter", cub3d);
+	{
+		write(2, "Closed: Missing parameter\n", 26);
+		free(cub3d->temp);
+		exit(1);
+	}
 	return (i);
 }
 
@@ -92,7 +94,7 @@ void	ft_check_extension(char **argv)
 {
 	if (ft_check_cub(argv[1]))
 	{
-		write(2, "Closed: Wrong extension", 23);
+		write(2, "Closed: Wrong extension\n", 24);
 		exit(1);
 	}
 }
