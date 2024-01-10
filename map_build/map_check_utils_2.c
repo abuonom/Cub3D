@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:18:29 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:32:42 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:44:44 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ size_t	find_max(char **map)
 
 void	resize_map(char **map)
 {
-	int		row;
-	int		i;
+	size_t	row;
+	size_t	i;
 	size_t	max_lenght;
 	size_t	current_lenght;
 

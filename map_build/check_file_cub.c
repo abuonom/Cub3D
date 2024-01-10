@@ -6,13 +6,13 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:26 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/09 19:15:21 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:46:46 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
+void	ft_check_file_cub(char **argv, t_cub3d *cub3d)
 {
 	cub3d->fd = open(argv[1], O_RDONLY);
 	if (cub3d->fd < 0)
@@ -30,13 +30,13 @@ void	ft_check_file_cub(int argc, char **argv, t_cub3d *cub3d)
 				ft_exit("Duplicated parameter", cub3d);
 		}
 		else if (cub3d->temp[0] != '\n'
-			&& ft_param_full(cub3d->temp, cub3d) < 6)
+			&& ft_param_full(cub3d) < 6)
 			break ;
 		free(cub3d->temp);
 		cub3d->temp = get_next_line(cub3d->fd);
 	}
 	close(cub3d->fd);
-	ft_param_full(cub3d->temp, cub3d);
+	ft_param_full(cub3d);
 	ft_check_parameters(cub3d);
 	free(cub3d->temp);
 }
@@ -66,18 +66,18 @@ int	ft_check_cub(char *path)
 	return (0);
 }
 
-int	ft_param_full(char *tmp, t_cub3d *cub3d)
+int	ft_param_full(t_cub3d *cub3d)
 {
 	int	i;
 
 	i = 0;
-	if (cub3d->NO != NULL)
+	if (cub3d->no != NULL)
 		i++;
-	if (cub3d->SO != NULL)
+	if (cub3d->so != NULL)
 		i++;
-	if (cub3d->WE != NULL)
+	if (cub3d->we != NULL)
 		i++;
-	if (cub3d->EA != NULL)
+	if (cub3d->ea != NULL)
 		i++;
 	if (cub3d->floor != NULL)
 		i++;
@@ -88,11 +88,11 @@ int	ft_param_full(char *tmp, t_cub3d *cub3d)
 	return (i);
 }
 
-void	ft_check_extension(int argc, char **argv, t_cub3d *cub3d)
+void	ft_check_extension(char **argv)
 {
 	if (ft_check_cub(argv[1]))
 	{
-		write(2,"Closed: Wrong extension",23);
+		write(2, "Closed: Wrong extension", 23);
 		exit(1);
 	}
 }

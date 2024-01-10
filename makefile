@@ -25,7 +25,7 @@ SRC = $(wildcard *.c) \
 
 OBJS = $(SRC:.c=.o)
 
-FLAGS :=-g
+FLAGS := -g -Wall -Wextra -Werror
 
 LIBFT_PATH = ./libft
 

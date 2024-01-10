@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:55:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/09 19:13:55 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:40:01 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	key_hook_pressed(int keycode, t_cub3d	*cub3d)
 {
 	if (keycode == W)
-		cub3d->player.mov_dirY = 1;
+		cub3d->player.mov_dir_y = 1;
 	if (keycode == A)
-		cub3d->player.mov_dirX = -1;
+		cub3d->player.mov_dir_x = -1;
 	if (keycode == S)
-		cub3d->player.mov_dirY = -1;
+		cub3d->player.mov_dir_y = -1;
 	if (keycode == D)
-		cub3d->player.mov_dirX = 1;
+		cub3d->player.mov_dir_x = 1;
 	if (keycode == LEFT)
 		cub3d->player.cam_dir = 1;
 	if (keycode == RIGHT)
@@ -38,13 +38,13 @@ int	key_hook_pressed(int keycode, t_cub3d	*cub3d)
 int	key_hook_released(int keycode, t_cub3d	*cub3d)
 {
 	if (keycode == W)
-		cub3d->player.mov_dirY = 0;
+		cub3d->player.mov_dir_y = 0;
 	if (keycode == A)
-		cub3d->player.mov_dirX = 0;
+		cub3d->player.mov_dir_x = 0;
 	if (keycode == S)
-		cub3d->player.mov_dirY = 0;
+		cub3d->player.mov_dir_y = 0;
 	if (keycode == D)
-		cub3d->player.mov_dirX = 0;
+		cub3d->player.mov_dir_x = 0;
 	if (keycode == LEFT)
 		cub3d->player.cam_dir = 0;
 	if (keycode == RIGHT)
@@ -62,7 +62,6 @@ int	mouse_move_hook(int x, int y, t_cub3d	*cub3d)
 	double	new_rotation_angle;
 
 	(void)y;
-//	mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	normalized_x = (2.0f * x) / WIN_WIDTH - 1.0f;
 	max_rotation_angle = 180.0f;
 	rotation_angle = max_rotation_angle * normalized_x;
@@ -83,21 +82,21 @@ void	game(t_cub3d	*cub3d)
 	mlx_hook(cub3d->win, 3, 1L << 1, key_hook_released, cub3d);
 	mlx_hook(cub3d->win, 6, 1L << 6, mouse_move_hook, cub3d);
 	mlx_loop_hook(cub3d->mlx, game_loop, cub3d);
-//	mlx_mouse_hide(cub3d->mlx, cub3d->win);
 	mlx_loop(cub3d->mlx);
 }
 
 int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d;
+
 	if (argc > 2 || argc < 2 || argv[1] == NULL || argv[1][0] == '\0')
 	{
-		write(2,"Closed: Wrong arguments",23);
+		write(2, "Closed: Wrong arguments", 23);
 		exit(1);
 	}
-	ft_check_extension(argc,argv,&cub3d);
+	ft_check_extension(argv);
 	init_cub3d(&cub3d);
-	ft_check_file_cub(argc, argv, &cub3d);
+	ft_check_file_cub(argv, &cub3d);
 	check_and_init_map(argv[1], &cub3d);
 	init_cub3d_mlx(&cub3d);
 	game(&cub3d);

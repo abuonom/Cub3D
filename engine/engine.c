@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:50:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 17:35:58 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:41:41 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	calculate_fps(t_cub3d *cube)
 	char	*number;
 
 	cube->frame_count++;
-	cube->oldTime = cube->time;
+	cube->old_time = cube->time;
 	cube->time = get_time();
-	cube->frameTime = (cube->time - cube->oldTime) / 1000.0;
-	cube->fps = (int)(1.0 / cube->frameTime);
+	cube->frame_time = (cube->time - cube->old_time) / 1000.0;
+	cube->fps = (int)(1.0 / cube->frame_time);
 	if (cube->fps > 60)
 	{
-		ft_sleep(((1.0 / 60) - cube->frameTime) * 1000);
+		ft_sleep(((1.0 / 60) - cube->frame_time) * 1000);
 		cube->time = get_time();
-		cube->frameTime = (cube->time - cube->oldTime) / 1000.0;
-		cube->fps = (int)(1.0 / cube->frameTime);
+		cube->frame_time = (cube->time - cube->old_time) / 1000.0;
+		cube->fps = (int)(1.0 / cube->frame_time);
 	}
 	number = ft_itoa(cube->fps);
 	mlx_string_put(cube->mlx, cube->win,

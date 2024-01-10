@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:47:17 by misidori          #+#    #+#             */
-/*   Updated: 2023/12/18 15:32:51 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:46:46 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	ft_check_file_xpm(t_cub3d *cub3d)
 void	ft_init_array_files(t_cub3d *cub3d, char ***no_so_we_ea)
 {
 	(*no_so_we_ea) = (char **) ft_calloc(5, sizeof(char *));
-	(*no_so_we_ea)[0] = ft_strdup(cub3d->NO);
-	(*no_so_we_ea)[1] = ft_strdup(cub3d->SO);
-	(*no_so_we_ea)[2] = ft_strdup(cub3d->WE);
-	(*no_so_we_ea)[3] = ft_strdup(cub3d->EA);
+	(*no_so_we_ea)[0] = ft_strdup(cub3d->no);
+	(*no_so_we_ea)[1] = ft_strdup(cub3d->so);
+	(*no_so_we_ea)[2] = ft_strdup(cub3d->we);
+	(*no_so_we_ea)[3] = ft_strdup(cub3d->ea);
 	(*no_so_we_ea)[4] = NULL;
 }
 

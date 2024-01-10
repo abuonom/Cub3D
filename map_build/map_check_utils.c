@@ -6,7 +6,7 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:27:35 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:24:14 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:44:26 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	spaces_with_zero(char **map)
 
 void	tab_with_spaces(char **map)
 {
-	int		row;
+	size_t	row;
 	size_t	len;
-	int		col;
+	size_t	col;
 
 	row = 0;
 	while (map[row] != NULL)

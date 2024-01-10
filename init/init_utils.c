@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misidori <misidori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 03:44:28 by abuonomo          #+#    #+#             */
-/*   Updated: 2024/01/04 18:05:21 by misidori         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:39:10 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	ft_sprite_position(t_cub3d *cub3d)
 			{
 				cub3d->sprite[k].x = j + 0.5;
 				cub3d->sprite[k].y = i + 0.5;
-				cub3d->sprite[k].distance = ft_distance(cub3d->player.posX,
-						cub3d->player.posY, cub3d->sprite[k].x,
+				cub3d->sprite[k].distance = ft_distance(cub3d->player.pos_x,
+						cub3d->player.pos_y, cub3d->sprite[k].x,
 						cub3d->sprite[k].y);
 				k++;
 			}

@@ -6,13 +6,13 @@
 /*   By: abuonomo <abuonomo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:52:00 by abuonomo          #+#    #+#             */
-/*   Updated: 2023/12/22 20:08:28 by abuonomo         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:42:46 by abuonomo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	draw_sprite_1(t_cub3d *cub3d, t_sprite *spr)
+static void	draw_sprite_1(t_sprite *spr)
 {
 	spr->spr_h = fabs(WIN_HEIGHT / spr->transf_y);
 	spr->drawy[0] = -spr->spr_h / 2 + WIN_HEIGHT / 2;
@@ -30,8 +30,7 @@ static void	draw_sprite_1(t_cub3d *cub3d, t_sprite *spr)
 		spr->drawx[1] = WIN_WIDTH - 1;
 }
 
-static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, t_sprite spr_print,
-				double *zbuff)
+static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, double *zbuff)
 {
 	int				v;
 	int				stripe;
@@ -60,7 +59,7 @@ static void	draw_sprite_2(t_cub3d *game, t_sprite *spr, t_sprite spr_print,
 	}
 }
 
-void	draw_sprites(t_cub3d *cub3d, double zbuffer)
+void	draw_sprites(t_cub3d *cub3d, double z_buffer)
 {
 	int			i;
 	t_sprite	spr;
@@ -70,20 +69,20 @@ void	draw_sprites(t_cub3d *cub3d, double zbuffer)
 	{
 		if (cub3d->sprite[i].distance > .1)
 		{
-			spr.x = (cub3d->sprite[i].x) - cub3d->player.posY;
-			spr.y = (cub3d->sprite[i].y) - cub3d->player.posX;
-			spr.inv_det = 1.0 / (cub3d->player.planeY
-					* cub3d->player.dirX
-					- cub3d->player.dirY * cub3d->player.planeX);
-			spr.transf_x = spr.inv_det * (cub3d->player.dirX * spr.x
-					- cub3d->player.dirY * spr.y);
-			spr.transf_y = spr.inv_det * (-cub3d->player.planeX
+			spr.x = (cub3d->sprite[i].x) - cub3d->player.pos_y;
+			spr.y = (cub3d->sprite[i].y) - cub3d->player.pos_x;
+			spr.inv_det = 1.0 / (cub3d->player.plane_y
+					* cub3d->player.dir_x
+					- cub3d->player.dir_y * cub3d->player.plane_x);
+			spr.transf_x = spr.inv_det * (cub3d->player.dir_x * spr.x
+					- cub3d->player.dir_y * spr.y);
+			spr.transf_y = spr.inv_det * (-cub3d->player.plane_x
 					* spr.x
-					+ cub3d->player.planeY * spr.y);
+					+ cub3d->player.plane_y * spr.y);
 			spr.spr_screen_x = (((double)(WIN_WIDTH) / 2.) * (1.
 						+ spr.transf_x / spr.transf_y));
-			draw_sprite_1(cub3d, &spr);
-			draw_sprite_2(cub3d, &spr, cub3d->sprite[i], &zbuffer);
+			draw_sprite_1(&spr);
+			draw_sprite_2(cub3d, &spr, &z_buffer);
 		}
 		i++;
 	}
@@ -93,7 +92,7 @@ void	render_map(t_cub3d *cube)
 {
 	t_render	data;
 	int			x;
-	double		zbuffer[WIN_WIDTH];
+	double		z_buffer[WIN_WIDTH];
 
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -101,10 +100,10 @@ void	render_map(t_cub3d *cube)
 		init_render_data(&data, cube, x);
 		perform_dda(&data, cube);
 		draw_vertical_line(&data, cube, x);
-		zbuffer[x] = data.perp_wall_dist;
+		z_buffer[x] = data.perp_wall_dist;
 		x++;
 	}
 	sort_sprites(cube);
 	frame_sprite(cube);
-	draw_sprites(cube, *zbuffer);
+	draw_sprites(cube, *z_buffer);
 }
